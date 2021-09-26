@@ -40,3 +40,10 @@ $factory->define(App\Models\Patient::class, static function (Faker\Generator $fa
         
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Secretary::class, static function (Faker\Generator $faker) {
+    return [
+        
+        
+    ];
+});

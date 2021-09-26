@@ -5,7 +5,10 @@
             @can('admin.patient')
                 <li class="nav-item"><a class="nav-link" href="{{ url('admin/patients') }}"><i class="nav-icon icon-book-open"></i> {{ trans('admin.patient.title') }}</a></li>
             @endcan
-            {{-- Do not delete me :) I'm used for auto-generation menu items --}}
+            @can('admin.secretary')
+            <li class="nav-item"><a class="nav-link" href="{{ url('admin/secretaries') }}"><i class="nav-icon icon-plane"></i> {{ trans('admin.secretary.title') }}</a></li>
+            @endcan
+           {{-- Do not delete me :) I'm used for auto-generation menu items --}}
 
             @canany(['admin.admin-user.index', 'admin.translation.index'])
                 <li class="nav-title">{{ trans('brackets/admin-ui::admin.sidebar.settings') }}</li>

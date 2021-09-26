@@ -66,7 +66,24 @@ return [
         ],
     ],
 
+    'secretary' => [
+        'title' => 'Secretary',
+
+        'actions' => [
+            'index' => 'Secretary',
+            'show' => 'View Secretary',
+            'create' => 'New Secretary',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
+
 
 
 
