@@ -8,7 +8,7 @@ use App\Http\Requests\Admin\AdminUser\ImpersonalLoginAdminUser;
 use App\Http\Requests\Admin\AdminUser\IndexAdminUser;
 use App\Http\Requests\Admin\AdminUser\StoreAdminUser;
 use App\Http\Requests\Admin\AdminUser\UpdateAdminUser;
-use Brackets\AdminAuth\Models\AdminUser;
+use App\Models\AdminUser;
 use Spatie\Permission\Models\Role;
 use Brackets\AdminAuth\Activation\Facades\Activation;
 use Brackets\AdminAuth\Services\ActivationService;
@@ -101,9 +101,24 @@ class AdminUsersController extends Controller
 
         // Store the AdminUser
         $adminUser = AdminUser::create($sanitized);
+        // Pull data we only need
+        $user = collect($sanitized)->only(['first_name', 'last_name', 'email', 'phone_no'])->toArray();
 
         // But we do have a roles, so we need to attach the roles to the adminUser
         $adminUser->roles()->sync(collect($request->input('roles', []))->map->id->toArray());
+
+        // Store user based on role
+        if ($adminUser->hasRole('Dentist')) {
+            $adminUser->dentist()->create($user);
+        }
+
+        if ($adminUser->hasRole('Secretary')) {
+            $adminUser->secretary()->create($user);
+        }
+
+        if ($adminUser->hasRole('Client')) {
+            $adminUser->patient()->create($user);
+        }
 
         if ($request->ajax()) {
             return ['redirect' => url('admin/admin-users'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];

@@ -3,3 +3,4 @@ import "./profile-edit-profile";
 import "./profile-edit-password";
 import './patient';
 import './secretary';
+import './dentist';

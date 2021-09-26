@@ -71,3 +71,33 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('dentists')->name('dentists/')->group(static function() {
+            Route::get('/',                                             'DentistController@index')->name('index');
+            Route::get('/create',                                       'DentistController@create')->name('create');
+            Route::post('/',                                            'DentistController@store')->name('store');
+            Route::get('/{dentist}/edit',                               'DentistController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'DentistController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{dentist}',                                   'DentistController@update')->name('update');
+            Route::delete('/{dentist}',                                 'DentistController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('dentists')->name('dentists/')->group(static function() {
+            Route::get('/',                                             'DentistController@index')->name('index');
+            Route::get('/create',                                       'DentistController@create')->name('create');
+            Route::post('/',                                            'DentistController@store')->name('store');
+            Route::get('/{dentist}/edit',                               'DentistController@edit')->name('edit');
+            Route::post('/{dentist}',                                   'DentistController@update')->name('update');
+            Route::delete('/{dentist}',                                 'DentistController@destroy')->name('destroy');
+        });
+    });
+});
