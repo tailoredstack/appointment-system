@@ -68,3 +68,23 @@ $factory->define(App\Models\Dentist::class, static function (Faker\Generator $fa
         
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Service::class, static function (Faker\Generator $faker) {
+    return [
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Service::class, static function (Faker\Generator $faker) {
+    return [
+        'created_at' => $faker->dateTime,
+        'description' => $faker->text(),
+        'duration' => $faker->time(),
+        'name' => $faker->firstName,
+        'price' => $faker->randomFloat,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});

@@ -101,3 +101,17 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('services')->name('services/')->group(static function() {
+            Route::get('/',                                             'ServiceController@index')->name('index');
+            Route::get('/create',                                       'ServiceController@create')->name('create');
+            Route::post('/',                                            'ServiceController@store')->name('store');
+            Route::get('/{service}/edit',                               'ServiceController@edit')->name('edit');
+            Route::post('/{service}',                                   'ServiceController@update')->name('update');
+            Route::delete('/{service}',                                 'ServiceController@destroy')->name('destroy');
+        });
+    });
+});
