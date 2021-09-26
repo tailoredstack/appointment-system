@@ -107,6 +107,15 @@ class FillDefaultAdminUserAndPermissions extends Migration
                 'permissions' => [
                     'admin'
                 ],
+            ],
+            [
+                'name' => 'Secretary',
+                'guard_name' => $this->guardName,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'permissions' => [
+                    'admin'
+                ],
             ]
         ];
 
@@ -152,7 +161,27 @@ class FillDefaultAdminUserAndPermissions extends Migration
                 'permissions' => [
                     //
                 ],
-            ],);
+            ]);
+
+            array_push($this->users, [
+                'first_name' => 'Jane',
+                'last_name' => 'Doe',
+                'email' => 'janedoe@email.com',
+                'password' => Hash::make($this->password),
+                'remember_token' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'activated' => true,
+                'roles' => [
+                    [
+                        'name' => 'Secretary',
+                        'guard_name' => $this->guardName,
+                    ],
+                ],
+                'permissions' => [
+                    //
+                ],
+            ]);
         }
     }
 
