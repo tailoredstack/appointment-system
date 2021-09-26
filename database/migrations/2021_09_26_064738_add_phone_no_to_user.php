@@ -13,7 +13,7 @@ class AddPhoneNoToUser extends Migration
      */
     public function up()
     {
-        Schema::table('user', function (Blueprint $table) {
+        Schema::table('admin_users', function (Blueprint $table) {
             $table->string('phone_no')->nullable();
         });
     }
@@ -25,7 +25,7 @@ class AddPhoneNoToUser extends Migration
      */
     public function down()
     {
-        Schema::table('user', function (Blueprint $table) {
+        Schema::table('admin_users', function (Blueprint $table) {
             $table->dropColumn('phone_no');
         });
     }
