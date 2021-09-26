@@ -33,7 +33,7 @@ class FillPermissionsForService extends Migration
             'admin.service.create',
             'admin.service.show',
             'admin.service.edit',
-            'admin.service.delete'
+            'admin.service.delete',
         ]);
 
         //Add New permissions
@@ -58,8 +58,8 @@ class FillPermissionsForService extends Migration
                 'guard_name' => $this->guardName,
                 'permissions' => $permissions->reject(function ($permission) {
                     return $permission === 'admin.service.delete';
-                })
-            ]
+                }),
+            ],
         ];
     }
 

@@ -119,7 +119,45 @@ return [
         ],
     ],
 
+    'service' => [
+        'title' => 'Service',
+
+        'actions' => [
+            'index' => 'Service',
+            'show' => 'View Service',
+            'create' => 'New Service',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            
+        ],
+    ],
+
+    'service' => [
+        'title' => 'Service',
+
+        'actions' => [
+            'index' => 'Service',
+            'show' => 'View Service',
+            'create' => 'New Service',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'description' => 'Description',
+            'duration' => 'Duration',
+            'name' => 'Name',
+            'price' => 'Price',
+            
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
+
+
 
 
 
