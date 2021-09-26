@@ -6,3 +6,4 @@ import './secretary';
 import './dentist';
 import './service';
 import './schedule';
+import './appointment';

@@ -42,62 +42,14 @@ return [
 
         'columns' => [
             'id' => 'ID',
-
-        ],
-    ],
-    'patient' => [
-        'title' => 'Patient',
-
-        'actions' => [
-            'index' => 'Patient',
-            'show' => 'View Patient',
-            'create' => 'New Patient',
-            'edit' => 'Edit :name',
-        ],
-
-        'columns' => [
-            'id' => 'ID',
             'admin_users_id' => 'Admin users',
             'email' => 'Email',
             'first_name' => 'First name',
             'last_name' => 'Last name',
             'phone_no' => 'Phone no',
-            
+
         ],
     ],
-
-    'secretary' => [
-        'title' => 'Secretary',
-
-        'actions' => [
-            'index' => 'Secretary',
-            'show' => 'View Secretary',
-            'create' => 'New Secretary',
-            'edit' => 'Edit :name',
-        ],
-
-        'columns' => [
-            'id' => 'ID',
-            
-        ],
-    ],
-
-    'dentist' => [
-        'title' => 'Dentist',
-
-        'actions' => [
-            'index' => 'Dentist',
-            'show' => 'View Dentist',
-            'create' => 'New Dentist',
-            'edit' => 'Edit :name',
-        ],
-
-        'columns' => [
-            'id' => 'ID',
-            
-        ],
-    ],
-
     'dentist' => [
         'title' => 'Dentist',
 
@@ -115,23 +67,7 @@ return [
             'first_name' => 'First name',
             'last_name' => 'Last name',
             'phone_no' => 'Phone no',
-            
-        ],
-    ],
 
-    'service' => [
-        'title' => 'Service',
-
-        'actions' => [
-            'index' => 'Service',
-            'show' => 'View Service',
-            'create' => 'New Service',
-            'edit' => 'Edit :name',
-        ],
-
-        'columns' => [
-            'id' => 'ID',
-            
         ],
     ],
 
@@ -151,7 +87,7 @@ return [
             'duration' => 'Duration',
             'name' => 'Name',
             'price' => 'Price',
-            
+
         ],
     ],
 
@@ -172,23 +108,7 @@ return [
             'first_name' => 'First name',
             'last_name' => 'Last name',
             'phone_no' => 'Phone no',
-            
-        ],
-    ],
 
-    'schedule' => [
-        'title' => 'Schedule',
-
-        'actions' => [
-            'index' => 'Schedule',
-            'show' => 'View Schedule',
-            'create' => 'New Schedule',
-            'edit' => 'Edit :name',
-        ],
-
-        'columns' => [
-            'id' => 'ID',
-            
         ],
     ],
 
@@ -208,11 +128,54 @@ return [
             'dentist_id' => 'Dentist',
             'end' => 'End',
             'start' => 'Start',
+
+        ],
+    ],
+
+    'appointment' => [
+        'title' => 'Appointment',
+
+        'actions' => [
+            'index' => 'Appointment',
+            'show' => 'View Appointment',
+            'create' => 'New Appointment',
+            'edit' => 'Edit :name',
+            'export' => 'Export',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+
+        ],
+    ],
+
+    'appointment' => [
+        'title' => 'Appointment',
+
+        'actions' => [
+            'index' => 'Appointment',
+            'show' => 'View Appointment',
+            'create' => 'New Appointment',
+            'edit' => 'Edit :name',
+            'export' => 'Export',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'date' => 'Date',
+            'dentist_id' => 'Dentist',
+            'end' => 'End',
+            'remarks' => 'Remarks',
+            'service_id' => 'Service',
+            'start' => 'Start',
+            'status' => 'Status',
             
         ],
     ],
 
     // Do not delete me :) I'm used for auto-generation
+
+
 
 
 

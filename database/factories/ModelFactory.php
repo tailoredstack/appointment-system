@@ -122,3 +122,26 @@ $factory->define(App\Models\Schedule::class, static function (Faker\Generator $f
         
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Appointment::class, static function (Faker\Generator $faker) {
+    return [
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Appointment::class, static function (Faker\Generator $faker) {
+    return [
+        'created_at' => $faker->dateTime,
+        'date' => $faker->date(),
+        'dentist_id' => $faker->randomNumber(5),
+        'end' => $faker->time(),
+        'remarks' => $faker->text(),
+        'service_id' => $faker->randomNumber(5),
+        'start' => $faker->time(),
+        'status' => $faker->sentence,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});
