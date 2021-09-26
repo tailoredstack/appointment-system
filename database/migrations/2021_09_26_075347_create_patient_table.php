@@ -20,7 +20,7 @@ class CreatePatientTable extends Migration
             $table->string('email')->unique();
             $table->string('phone_no');
             $table->integer('admin_users_id')->unsigned();
-            $table->foreign('admin_users_id')->references('id')->on('admin_users');
+            $table->foreign('admin_users_id')->references('id')->on('admin_users')->onDelete('cascade');
             $table->timestamps();
         });
     }

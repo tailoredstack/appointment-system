@@ -19,3 +19,24 @@ $factory->define(Brackets\AdminAuth\Models\AdminUser::class, function (Faker\Gen
 
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Patient::class, static function (Faker\Generator $faker) {
+    return [
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Patient::class, static function (Faker\Generator $faker) {
+    return [
+        'admin_users_id' => $faker->randomNumber(5),
+        'created_at' => $faker->dateTime,
+        'email' => $faker->email,
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
+        'phone_no' => $faker->sentence,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});
