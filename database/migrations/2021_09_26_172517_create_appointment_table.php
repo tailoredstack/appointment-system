@@ -18,8 +18,8 @@ class CreateAppointmentTable extends Migration
             $table->date('date');
             $table->time('start');
             $table->time('end');
-            $table->string('status')->default('pending');
-            $table->text('remarks');
+            $table->string('status')->nullable()->default('pending');
+            $table->text('remarks')->nullable();
             $table->integer('dentist_id')->unsigned();
             $table->integer('service_id')->unsigned();
             $table->foreign('dentist_id')->references('id')->on('admin_users')->onDelete('cascade');
