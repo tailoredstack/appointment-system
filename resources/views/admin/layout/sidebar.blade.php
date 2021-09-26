@@ -14,6 +14,9 @@
            @can('admin.service')
            <li class="nav-item"><a class="nav-link" href="{{ url('admin/services') }}"><i class="nav-icon icon-umbrella"></i> {{ trans('admin.service.title') }}</a></li>
            @endcan
+           @can('admin.schedule')
+           <li class="nav-item"><a class="nav-link" href="{{ url('admin/schedules') }}"><i class="nav-icon icon-graduation"></i> {{ trans('admin.schedule.title') }}</a></li>
+           @endcan
            {{-- Do not delete me :) I'm used for auto-generation menu items --}}
 
             @canany(['admin.admin-user.index', 'admin.translation.index'])

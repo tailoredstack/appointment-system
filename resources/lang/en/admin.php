@@ -176,7 +176,45 @@ return [
         ],
     ],
 
+    'schedule' => [
+        'title' => 'Schedule',
+
+        'actions' => [
+            'index' => 'Schedule',
+            'show' => 'View Schedule',
+            'create' => 'New Schedule',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            
+        ],
+    ],
+
+    'schedule' => [
+        'title' => 'Schedule',
+
+        'actions' => [
+            'index' => 'Schedule',
+            'show' => 'View Schedule',
+            'create' => 'New Schedule',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'date' => 'Date',
+            'dentist_id' => 'Dentist',
+            'end' => 'End',
+            'start' => 'Start',
+            
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
+
+
 
 
 
