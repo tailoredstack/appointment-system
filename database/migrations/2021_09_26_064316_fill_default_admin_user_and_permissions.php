@@ -116,7 +116,16 @@ class FillDefaultAdminUserAndPermissions extends Migration
                 'permissions' => [
                     'admin'
                 ],
-            ]
+            ],
+            [
+                'name' => 'Dentist',
+                'guard_name' => $this->guardName,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'permissions' => [
+                    'admin'
+                ],
+            ],
         ];
 
         //Add new users
@@ -175,6 +184,26 @@ class FillDefaultAdminUserAndPermissions extends Migration
                 'roles' => [
                     [
                         'name' => 'Secretary',
+                        'guard_name' => $this->guardName,
+                    ],
+                ],
+                'permissions' => [
+                    //
+                ],
+            ]);
+
+            array_push($this->users, [
+                'first_name' => 'James',
+                'last_name' => 'Doe',
+                'email' => 'jamesdoe@email.com',
+                'password' => Hash::make($this->password),
+                'remember_token' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'activated' => true,
+                'roles' => [
+                    [
+                        'name' => 'Dentist',
                         'guard_name' => $this->guardName,
                     ],
                 ],
