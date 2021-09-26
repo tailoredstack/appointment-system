@@ -99,14 +99,23 @@ class FillDefaultAdminUserAndPermissions extends Migration
                     return $permission === 'admin.admin-user.impersonal-login';
                 }),
             ],
+            [
+                'name' => 'Client',
+                'guard_name' => $this->guardName,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'permissions' => [
+                    'admin'
+                ],
+            ]
         ];
 
         //Add new users
         $this->users = [
             [
-                'first_name' => 'Administrator',
-                'last_name' => 'Administrator',
-                'email' => 'administrator@brackets.sk',
+                'first_name' => 'John',
+                'last_name' => 'Doe',
+                'email' => 'johndoe@email.com',
                 'password' => Hash::make($this->password),
                 'remember_token' => null,
                 'created_at' => Carbon::now(),
@@ -123,6 +132,28 @@ class FillDefaultAdminUserAndPermissions extends Migration
                 ],
             ],
         ];
+
+        if (env('APP_ENV') === 'local') {
+            array_push($this->users, [
+                'first_name' => 'Johnny',
+                'last_name' => 'Since',
+                'email' => 'johnnysince@email.com',
+                'password' => Hash::make($this->password),
+                'remember_token' => null,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'activated' => true,
+                'roles' => [
+                    [
+                        'name' => 'Client',
+                        'guard_name' => $this->guardName,
+                    ],
+                ],
+                'permissions' => [
+                    //
+                ],
+            ],);
+        }
     }
 
     /**
