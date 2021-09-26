@@ -58,3 +58,17 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('patients')->name('patients/')->group(static function() {
+            Route::get('/',                                             'PatientController@index')->name('index');
+            Route::get('/create',                                       'PatientController@create')->name('create');
+            Route::post('/',                                            'PatientController@store')->name('store');
+            Route::get('/{patient}/edit',                               'PatientController@edit')->name('edit');
+            Route::post('/{patient}',                                   'PatientController@update')->name('update');
+            Route::delete('/{patient}',                                 'PatientController@destroy')->name('destroy');
+        });
+    });
+});
