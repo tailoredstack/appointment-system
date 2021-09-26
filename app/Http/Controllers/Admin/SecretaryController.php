@@ -35,10 +35,10 @@ class SecretaryController extends Controller
             $request,
 
             // set columns to query
-            [''],
+            ['admin_users_id', 'email', 'first_name', 'id', 'last_name', 'phone_no'],
 
             // set columns to searchIn
-            ['']
+            ['email', 'first_name', 'id', 'last_name', 'phone_no']
         );
 
         if ($request->ajax()) {

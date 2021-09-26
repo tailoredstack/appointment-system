@@ -25,7 +25,7 @@ class IndexSecretary extends FormRequest
     public function rules(): array
     {
         return [
-            'orderBy' => 'in:|nullable',
+            'orderBy' => 'in:admin_users_id,email,first_name,id,last_name,phone_no|nullable',
             'orderDirection' => 'in:asc,desc|nullable',
             'search' => 'string|nullable',
             'page' => 'integer|nullable',

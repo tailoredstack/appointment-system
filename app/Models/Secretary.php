@@ -9,14 +9,20 @@ class Secretary extends Model
     protected $table = 'secretary';
 
     protected $fillable = [
+        'admin_users_id',
+        'email',
+        'first_name',
+        'last_name',
+        'phone_no',
     
     ];
     
     
     protected $dates = [
+        'created_at',
+        'updated_at',
     
     ];
-    public $timestamps = false;
     
     protected $appends = ['resource_url'];
 

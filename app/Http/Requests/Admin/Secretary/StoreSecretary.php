@@ -26,6 +26,11 @@ class StoreSecretary extends FormRequest
     public function rules(): array
     {
         return [
+            'admin_users_id' => ['required', 'integer'],
+            'email' => ['required', 'email', Rule::unique('secretary', 'email'), 'string'],
+            'first_name' => ['required', 'string'],
+            'last_name' => ['required', 'string'],
+            'phone_no' => ['required', Rule::unique('secretary', 'phone_no'), 'string'],
             
         ];
     }

@@ -155,7 +155,29 @@ return [
         ],
     ],
 
+    'secretary' => [
+        'title' => 'Secretary',
+
+        'actions' => [
+            'index' => 'Secretary',
+            'show' => 'View Secretary',
+            'create' => 'New Secretary',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'admin_users_id' => 'Admin users',
+            'email' => 'Email',
+            'first_name' => 'First name',
+            'last_name' => 'Last name',
+            'phone_no' => 'Phone no',
+            
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
+
 
 
 

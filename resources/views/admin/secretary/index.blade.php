@@ -45,13 +45,21 @@
                                 <thead>
                                     <tr>
 
-
+                                        <th is='sortable' :column="'id'">{{ trans('admin.secretary.columns.id') }}</th>
+                                        <th is='sortable' :column="'first_name'">{{ trans('admin.secretary.columns.first_name') }}</th>
+                                        <th is='sortable' :column="'last_name'">{{ trans('admin.secretary.columns.last_name') }}</th>
+                                        <th is='sortable' :column="'email'">{{ trans('admin.secretary.columns.email') }}</th>
+                                        <th is='sortable' :column="'phone_no'">{{ trans('admin.secretary.columns.phone_no') }}</th>
                                         <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr v-for="(item, index) in collection" >
-
+                                        <td>@{{ item.id }}</td>
+                                        <td>@{{ item.first_name }}</td>
+                                        <td>@{{ item.last_name }}</td>
+                                        <td>@{{ item.email }}</td>
+                                        <td>@{{ item.phone_no }}</td>
 
                                         <td>
                                             <div class="row no-gutters">
