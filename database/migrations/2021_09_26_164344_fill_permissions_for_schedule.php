@@ -34,7 +34,6 @@ class FillPermissionsForSchedule extends Migration
             'admin.schedule.show',
             'admin.schedule.edit',
             'admin.schedule.delete',
-            'admin.schedule.bulk-delete',
         ]);
 
         //Add New permissions

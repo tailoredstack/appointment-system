@@ -5,3 +5,4 @@ import './patient';
 import './secretary';
 import './dentist';
 import './service';
+import './schedule';

@@ -115,3 +115,18 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('schedules')->name('schedules/')->group(static function() {
+            Route::get('/',                                             'ScheduleController@index')->name('index');
+            Route::get('/create',                                       'ScheduleController@create')->name('create');
+            Route::post('/',                                            'ScheduleController@store')->name('store');
+            Route::get('/{schedule}/edit',                              'ScheduleController@edit')->name('edit');
+            Route::post('/{schedule}',                                  'ScheduleController@update')->name('update');
+            Route::delete('/{schedule}',                                'ScheduleController@destroy')->name('destroy');
+        });
+    });
+});

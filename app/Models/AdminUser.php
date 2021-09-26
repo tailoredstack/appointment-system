@@ -22,4 +22,9 @@ class AdminUser extends DefaultAdminUser
     {
         return $this->hasOne(Dentist::class, 'admin_users_id', 'id');
     }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class, 'dentist_id', 'id');
+    }
 }

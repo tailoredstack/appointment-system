@@ -102,3 +102,23 @@ $factory->define(App\Models\Secretary::class, static function (Faker\Generator $
         
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Schedule::class, static function (Faker\Generator $faker) {
+    return [
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Schedule::class, static function (Faker\Generator $faker) {
+    return [
+        'created_at' => $faker->dateTime,
+        'date' => $faker->date(),
+        'dentist_id' => $faker->randomNumber(5),
+        'end' => $faker->time(),
+        'start' => $faker->time(),
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});

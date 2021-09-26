@@ -19,8 +19,8 @@ class CreateScheduleTable extends Migration
             $table->time('start');
             $table->time('end');
             $table->integer('dentist_id')->unsigned();
-            $table->foreign('dentist_id')->references('id')->on('admin_users_id')->onDelete('cascade');
-            $table->$table->timestamps();
+            $table->foreign('dentist_id')->references('id')->on('admin_users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
