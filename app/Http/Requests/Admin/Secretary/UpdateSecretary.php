@@ -26,6 +26,11 @@ class UpdateSecretary extends FormRequest
     public function rules(): array
     {
         return [
+            'admin_users_id' => ['sometimes', 'integer'],
+            'email' => ['sometimes', 'email', Rule::unique('secretary', 'email')->ignore($this->secretary->getKey(), $this->secretary->getKeyName()), 'string'],
+            'first_name' => ['sometimes', 'string'],
+            'last_name' => ['sometimes', 'string'],
+            'phone_no' => ['sometimes', Rule::unique('secretary', 'phone_no')->ignore($this->secretary->getKey(), $this->secretary->getKeyName()), 'string'],
             
         ];
     }

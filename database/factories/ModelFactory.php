@@ -88,3 +88,17 @@ $factory->define(App\Models\Service::class, static function (Faker\Generator $fa
         
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Secretary::class, static function (Faker\Generator $faker) {
+    return [
+        'admin_users_id' => $faker->randomNumber(5),
+        'created_at' => $faker->dateTime,
+        'email' => $faker->email,
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
+        'phone_no' => $faker->sentence,
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});
