@@ -8,6 +8,9 @@
             @can('admin.secretary')
             <li class="nav-item"><a class="nav-link" href="{{ url('admin/secretaries') }}"><i class="nav-icon icon-plane"></i> {{ trans('admin.secretary.title') }}</a></li>
             @endcan
+            @can('admin.dentist')
+           <li class="nav-item"><a class="nav-link" href="{{ url('admin/dentists') }}"><i class="nav-icon icon-magnet"></i> {{ trans('admin.dentist.title') }}</a></li>
+           @endcan
            {{-- Do not delete me :) I'm used for auto-generation menu items --}}
 
             @canany(['admin.admin-user.index', 'admin.translation.index'])
