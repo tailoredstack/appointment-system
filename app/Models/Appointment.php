@@ -16,7 +16,7 @@ class Appointment extends Model
         'service_id',
         'start',
         'status',
-        'appointment_id'
+        'patient_id'
     ];
 
 

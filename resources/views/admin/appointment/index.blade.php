@@ -49,7 +49,8 @@
                                     <tr>
 
                                         <th is='sortable' :column="'id'">{{ trans('admin.appointment.columns.id') }}</th>
-                                        <th is='sortable' :column="'dentist.name'">{{ trans('admin.appointment.columns.dentist_id') }}</th>
+                                        <th is='sortable' :column="'patient.id'">{{ trans('admin.appointment.columns.patient_id') }}</th>
+                                        <th is='sortable' :column="'dentist.id'">{{ trans('admin.appointment.columns.dentist_id') }}</th>
                                         <th is='sortable' :column="'service.name'">{{ trans('admin.appointment.columns.service_id') }}</th>
                                         <th is='sortable' :column="'date'">{{ trans('admin.appointment.columns.date') }}</th>
                                         <th is='sortable' :column="'start'">{{ trans('admin.appointment.columns.start') }}</th>
@@ -62,6 +63,7 @@
                                     <tr v-for="(item, index) in collection" >
 
                                         <td>@{{ item.id }}</td>
+                                        <td>@{{ item.patient.full_name }}</td>
                                         <td>@{{ item.dentist.full_name }}</td>
                                         <td>@{{ item.service.name }}</td>
                                         <td>@{{ item.date | date }}</td>

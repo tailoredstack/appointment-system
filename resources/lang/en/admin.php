@@ -173,7 +173,32 @@ return [
         ],
     ],
 
+    'appointment' => [
+        'title' => 'Appointment',
+
+        'actions' => [
+            'index' => 'Appointment',
+            'show' => 'View Appointment',
+            'create' => 'New Appointment',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'date' => 'Date',
+            'dentist_id' => 'Dentist',
+            'end' => 'End',
+            'patient_id' => 'Patient',
+            'remarks' => 'Remarks',
+            'service_id' => 'Service',
+            'start' => 'Start',
+            'status' => 'Status',
+            
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
+
 
 
 

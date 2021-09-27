@@ -1,7 +1,134 @@
+@if($mode === 'show')
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('dentist_id'), 'has-success': fields.dentist_id && fields.dentist_id.valid }">
     <label for="dentist_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.dentist_id') }}</label>
     <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <input type="text" v-model="form.dentist_id" v-validate="'required'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('dentist_id'), 'form-control-success': fields.dentist_id && fields.dentist_id.valid}" id="dentist_id" name="dentist_id" placeholder="{{ trans('admin.appointment.columns.dentist_id') }}">
+        <span>{{$appointment->dentist->full_name}}</span>
+    </div>
+</div>
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('service_id'), 'has-success': fields.service_id && fields.service_id.valid }">
+    <label for="service_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.service_id') }}</label>
+        <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <span>{{$appointment->service->name}}</span>
+    </div>
+</div>
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('date'), 'has-success': fields.date && fields.date.valid }">
+    <label for="date" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.date') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-sm-8'">
+        {{$appointment->date}}
+    </div>
+</div>
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('start'), 'has-success': fields.start && fields.start.valid }">
+    <label for="start" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.start') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+       <span>{{$appointment->start}}</span>
+    </div>
+</div>
+
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('end'), 'has-success': fields.end && fields.end.valid }">
+    <label for="end" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.end') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+       <span>{{$appointment->end}}</span>
+    </div>
+</div>
+
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('remarks'), 'has-success': fields.remarks && fields.remarks.valid }">
+    <label for="remarks" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.remarks') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <span v-text="'{{$appointment->remarks}}'||'No remarks available'"></span>
+    </div>
+</div>
+
+
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('status'), 'has-success': fields.status && fields.status.valid }">
+    <label for="status" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.status') }}</label>
+        <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <span class="badge badge-info text-uppercase text-white">{{$appointment->status}}</span>
+    </div>
+</div>
+@endif
+
+
+@if($mode === 'edit')
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('dentist_id'), 'has-success': fields.dentist_id && fields.dentist_id.valid }">
+    <label for="dentist_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.dentist_id') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <span>{{$appointment->dentist->full_name}}</span>
+    </div>
+</div>
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('service_id'), 'has-success': fields.service_id && fields.service_id.valid }">
+    <label for="service_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.service_id') }}</label>
+        <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <span>{{$appointment->service->name}}</span>
+    </div>
+</div>
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('date'), 'has-success': fields.date && fields.date.valid }">
+    <label for="date" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.date') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-sm-8'">
+        {{$appointment->date}}
+    </div>
+</div>
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('start'), 'has-success': fields.start && fields.start.valid }">
+    <label for="start" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.start') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+       <span>{{$appointment->start}}</span>
+    </div>
+</div>
+
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('end'), 'has-success': fields.end && fields.end.valid }">
+    <label for="end" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.end') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+       <span>{{$appointment->end}}</span>
+    </div>
+</div>
+
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('status'), 'has-success': fields.status && fields.status.valid }">
+    <label for="status" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.status') }}</label>
+        <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <select v-model="form.status" v-validate="'required'" @input="validate($event)" class="form-control custom-select" :class="{'form-control-danger': errors.has('status'), 'form-control-success': fields.status && fields.status.valid}" id="status" name="status" placeholder="{{ trans('admin.appointment.columns.status') }}">
+            <option value="pending">PENDING</option>
+            @if($owner) <option value="cancelled">CANCELLED</option>
+            @else
+            <option value="rejected">REJECTED</option>
+            <option value="accepted">ACCEPTED</option>
+            @endif
+        </select>
+        <div v-if="errors.has('status')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('status') }}</div>
+    </div>
+</div>
+
+<div v-if="form.status !== 'pending'" class="form-group row align-items-center" :class="{'has-danger': errors.has('remarks'), 'has-success': fields.remarks && fields.remarks.valid }">
+    <label for="remarks" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.remarks') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <div>
+            <textarea class="form-control" v-model="form.remarks" v-validate="'required'" id="remarks" name="remarks"></textarea>
+        </div>
+        <div v-if="errors.has('remarks')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('remarks') }}</div>
+    </div>
+</div>
+@endif
+
+
+
+@if($mode === 'create')
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('dentist_id'), 'has-success': fields.dentist_id && fields.dentist_id.valid }">
+    <label for="dentist_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.dentist_id') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <select v-model="form.dentist_id" v-validate="'required'" @input="validate($event)" class="form-control custom-select" :class="{'form-control-danger': errors.has('dentist_id'), 'form-control-success': fields.dentist_id && fields.dentist_id.valid}" id="dentist_id" name="dentist_id" placeholder="{{ trans('admin.appointment.columns.dentist_id') }}">
+            @foreach ($dentists as $dentist)
+                <option value="{{$dentist['id']}}">{{$dentist['name']}}</option>
+            @endforeach
+        </select>
         <div v-if="errors.has('dentist_id')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('dentist_id') }}</div>
     </div>
 </div>
@@ -9,7 +136,11 @@
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('service_id'), 'has-success': fields.service_id && fields.service_id.valid }">
     <label for="service_id" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.service_id') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <input type="text" v-model="form.service_id" v-validate="'required'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('service_id'), 'form-control-success': fields.service_id && fields.service_id.valid}" id="service_id" name="service_id" placeholder="{{ trans('admin.appointment.columns.service_id') }}">
+        <select v-model="form.service_id" v-model="form.service_id" v-validate="'required|integer'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('service_id'), 'form-control-success': fields.service_id && fields.service_id.valid}" id="service_id" name="service_id" placeholder="{{ trans('admin.appointment.columns.service_id') }}">
+            @foreach ($services as $service)
+                <option value="{{$service['id']}}">{{$service['name']}}</option>
+            @endforeach
+        </select>
         <div v-if="errors.has('service_id')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('service_id') }}</div>
     </div>
 </div>
@@ -48,21 +179,4 @@
     </div>
 </div>
 
-
-<div class="form-group row align-items-center {{$mode === 'create' ? 'hidden' : ''}}" :class="{'has-danger': errors.has('remarks'), 'has-success': fields.remarks && fields.remarks.valid }">
-    <label for="remarks" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.remarks') }}</label>
-    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <div>
-            <textarea class="form-control" v-model="form.remarks" v-validate="'{{$mode === 'create' ? '' : 'required'}}'" id="remarks" name="remarks"></textarea>
-        </div>
-        <div v-if="errors.has('remarks')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('remarks') }}</div>
-    </div>
-</div>
-
-<div class="form-group row align-items-center {{$mode === 'create' ? 'hidden' : ''}}" :class="{'has-danger': errors.has('status'), 'has-success': fields.status && fields.status.valid }">
-    <label for="status" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.status') }}</label>
-        <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <input type="text" v-model="form.status" v-validate="'{{$mode === 'create' ? '' : 'required'}}'" @input="validate($event)" class="form-control" :class="{'form-control-danger': errors.has('status'), 'form-control-success': fields.status && fields.status.valid}" id="status" name="status" placeholder="{{ trans('admin.appointment.columns.status') }}">
-        <div v-if="errors.has('status')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('status') }}</div>
-    </div>
-</div>
+@endif
