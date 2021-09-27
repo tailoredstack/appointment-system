@@ -27,4 +27,9 @@ class AdminUser extends DefaultAdminUser
     {
         return $this->hasMany(Schedule::class, 'dentist_id', 'id');
     }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class, 'patient_id', 'id');
+    }
 }

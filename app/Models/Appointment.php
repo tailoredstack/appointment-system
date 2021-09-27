@@ -16,6 +16,7 @@ class Appointment extends Model
         'service_id',
         'start',
         'status',
+        'appointment_id'
     ];
 
 
@@ -45,5 +46,10 @@ class Appointment extends Model
     public function service()
     {
         return $this->belongsTo(Service::class, 'service_id', 'id');
+    }
+
+    public function patient()
+    {
+        return $this->belongsTo(AdminUser::class, 'patient_id', 'id');
     }
 }
