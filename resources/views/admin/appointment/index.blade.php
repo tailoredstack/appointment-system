@@ -80,7 +80,7 @@
 @endcan
 @can('admin.appointment.edit')
                                                 <div class="col">
-                                                    <a class="btn btn-sm btn-spinner btn-info" :href="item.resource_url + '/edit'" title="{{ trans('brackets/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-edit"></i></a>
+                                                    <a class="btn btn-sm btn-spinner btn-info" :class="{ disabled: !['pending', 'accepted'].includes(item.status) }" :href="item.resource_url + '/edit'" title="{{ trans('brackets/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-edit"></i></a>
                                                 </div>
 @endcan
 @can('admin.appointment.delete')
