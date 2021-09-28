@@ -36,6 +36,13 @@
 </div>
 
 
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('status'), 'has-success': fields.status && fields.status.valid }">
+    <label for="status" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.status') }}</label>
+        <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <span class="badge text-uppercase" :class="{ 'badge-success': form.status === 'accepted', 'badge-danger': form.status === 'rejected', 'badge-warning': form.status === 'cancelled', 'badge-info': form.status === 'pending' }">{{$appointment->status}}</span>
+    </div>
+</div>
+
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('remarks'), 'has-success': fields.remarks && fields.remarks.valid }">
     <label for="remarks" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.remarks') }}</label>
     <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
@@ -43,14 +50,6 @@
     </div>
 </div>
 
-
-
-<div class="form-group row align-items-center" :class="{'has-danger': errors.has('status'), 'has-success': fields.status && fields.status.valid }">
-    <label for="status" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.status') }}</label>
-        <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <span class="badge badge-info text-uppercase text-white">{{$appointment->status}}</span>
-    </div>
-</div>
 @endif
 
 
@@ -95,15 +94,19 @@
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('status'), 'has-success': fields.status && fields.status.valid }">
     <label for="status" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.status') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-        <select v-model="form.status" v-validate="'required'" @input="validate($event)" class="form-control custom-select" :class="{'form-control-danger': errors.has('status'), 'form-control-success': fields.status && fields.status.valid}" id="status" name="status" placeholder="{{ trans('admin.appointment.columns.status') }}">
-            <option value="pending">PENDING</option>
-            @if($owner) <option value="cancelled">CANCELLED</option>
+            @if($accepted)
+            <span class="badge text-uppercase text-white badge-success">{{$appointment->status}}</span>
             @else
-            <option value="rejected">REJECTED</option>
-            <option value="accepted">ACCEPTED</option>
+            <select ref="status" v-model="form.status" v-validate="'required'" @input="validate($event)" class="form-control custom-select" :class="{'form-control-danger': errors.has('status'), 'form-control-success': fields.status && fields.status.valid}" id="status" name="status" placeholder="{{ trans('admin.appointment.columns.status') }}">
+                <option value="pending">PENDING</option>
+                @if($owner) <option value="cancelled">CANCEL</option>
+                @else
+                <option value="rejected">REJECT</option>
+                <option value="accepted">ACCEPT</option>
+                @endif
+            </select>
+            <div v-if="errors.has('status')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('status') }}</div>
             @endif
-        </select>
-        <div v-if="errors.has('status')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('status') }}</div>
     </div>
 </div>
 
@@ -111,7 +114,7 @@
     <label for="remarks" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.remarks') }}</label>
     <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
         <div>
-            <textarea class="form-control" v-model="form.remarks" v-validate="'required'" id="remarks" name="remarks"></textarea>
+            <textarea class="form-control" v-model="form.remarks" v-validate.immediate="'required_if:status,rejected,cancelled'" id="remarks" name="remarks"></textarea>
         </div>
         <div v-if="errors.has('remarks')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('remarks') }}</div>
     </div>

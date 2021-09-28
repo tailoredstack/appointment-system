@@ -95,7 +95,7 @@ class AppointmentController extends Controller
         // Sanitize input
         $sanitized = $request->getSanitized();
 
-        $user  = AdminUser::find(auth()->user()->id)->first();
+        $user  = AdminUser::find(auth()->user()->id);
 
         // Store the Appointment
         $user->appointments()->create($sanitized);
@@ -149,6 +149,7 @@ class AppointmentController extends Controller
      */
     public function update(UpdateAppointment $request, Appointment $appointment)
     {
+        abort_if(!in_array($appointment->status, ['pending', 'accepted']), 400, "You cannot update an {$appointment->status} appointment");
         // Sanitize input
         $sanitized = $request->getSanitized();
 

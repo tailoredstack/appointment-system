@@ -29,11 +29,10 @@ class UpdateAppointment extends FormRequest
             'date' => ['sometimes', 'date'],
             'dentist_id' => ['sometimes', 'integer'],
             'end' => ['sometimes', 'date_format:H:i:s'],
-            'remarks' => ['sometimes', 'string'],
+            'remarks' => ['sometimes', 'required_if:status,rejected,cancelled'],
             'service_id' => ['sometimes', 'integer'],
             'start' => ['sometimes', 'date_format:H:i:s'],
             'status' => ['sometimes', 'string'],
-            
         ];
     }
 
