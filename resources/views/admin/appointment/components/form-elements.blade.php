@@ -94,19 +94,27 @@
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('status'), 'has-success': fields.status && fields.status.valid }">
     <label for="status" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.appointment.columns.status') }}</label>
         <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
-            @if($accepted)
-            <span class="badge text-uppercase text-white badge-success">{{$appointment->status}}</span>
+            @if(in_array($appointment->status, ['pending', 'accepted']))
+                <select v-model="form.status" v-validate="'required'" @input="validate($event)" class="form-control custom-select" :class="{'form-control-danger': errors.has('status'), 'form-control-success': fields.status && fields.status.valid}" id="status" name="status" placeholder="{{ trans('admin.appointment.columns.status') }}">
+                    @if($appointment->status === 'pending')
+                        @if($owner)
+                            <option value="pending">PENDING</option>
+                            <option value="cancelled">CANCEL</option>
+                        @else
+                            <option value="pending">PENDING</option>
+                            <option value="cancelled">CANCEL</option>
+                            <option value="rejected">REJECT</option>
+                            <option value="accepted">ACCEPT</option>
+                        @endif
+                    @elseif($appointment->status === 'accepted')
+                        <option value="cancelled">CANCEL</option>
+                        <option value="accepted">ACCEPT</option>
+                    @endif
+                </select>
             @else
-            <select ref="status" v-model="form.status" v-validate="'required'" @input="validate($event)" class="form-control custom-select" :class="{'form-control-danger': errors.has('status'), 'form-control-success': fields.status && fields.status.valid}" id="status" name="status" placeholder="{{ trans('admin.appointment.columns.status') }}">
-                <option value="pending">PENDING</option>
-                @if($owner) <option value="cancelled">CANCEL</option>
-                @else
-                <option value="rejected">REJECT</option>
-                <option value="accepted">ACCEPT</option>
-                @endif
-            </select>
-            <div v-if="errors.has('status')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('status') }}</div>
+            <span></span>
             @endif
+        <div v-if="errors.has('status')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('status') }}</div>
     </div>
 </div>
 
