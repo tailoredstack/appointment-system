@@ -149,7 +149,7 @@ class AppointmentController extends Controller
      */
     public function update(UpdateAppointment $request, Appointment $appointment)
     {
-        abort_if(!in_array($appointment->status, ['pending', 'accepted']), 400, "You cannot update an {$appointment->status} appointment");
+        abort_if(!in_array($appointment->status, ['pending', 'accepted']), 400, "Unable to update appointment");
         // Sanitize input
         $sanitized = $request->getSanitized();
 
