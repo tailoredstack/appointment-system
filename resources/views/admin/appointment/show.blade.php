@@ -8,7 +8,9 @@
         <div class="card">
 
             <appointment-form
+                action=""
                 v-cloak
+                :data="{{ $appointment->toJson() }}"
                 inline-template>
 
                 <form class="form-horizontal form-edit" novalidate>
@@ -24,7 +26,7 @@
 
 
                     <div class="card-footer">
-                        <a href="{{$appointment->resource_url."/edit"}}" class="btn btn-spinner btn-primary">
+                        <a href="{{$appointment->resource_url."/edit"}}" class="btn btn-spinner btn-primary {{!in_array($appointment->status, ['pending', 'accepted']) ? 'disabled' : ''}}">
                             <i class="fa" :class="submiting ? 'fa-spinner' : 'fa-edit'"></i>
                             {{ trans('brackets/admin-ui::admin.btn.edit') }}
                         </a>

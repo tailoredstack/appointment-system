@@ -17,7 +17,7 @@
         "laravel/tinker": "^2.5"
     },
     "require-dev": {
-        "brackets/admin-generator": "^6.1",
+        "tailoredstack/admin-generator": "^6.2.2",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
@@ -63,5 +63,11 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/tailoredstack/admin-generator.git"
+        }
+    ]
 }

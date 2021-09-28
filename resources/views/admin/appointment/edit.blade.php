@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="card-body">
-                        @include('admin.appointment.components.form-elements', ['mode' => 'edit'])
+                        @include('admin.appointment.components.form-elements', ['mode' => 'edit', 'accepted' => $appointment->status === 'accepted'])
                     </div>
 
 
