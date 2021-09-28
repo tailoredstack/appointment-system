@@ -95,7 +95,7 @@ class AppointmentController extends Controller
         // Sanitize input
         $sanitized = $request->getSanitized();
 
-        $user  = AdminUser::find(auth()->user()->id)->first();
+        $user  = AdminUser::find(auth()->user()->id);
 
         // Store the Appointment
         $user->appointments()->create($sanitized);
