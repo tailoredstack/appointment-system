@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="card-body">
-                    @include('admin.appointment.components.form-elements')
+                    @include('admin.appointment.components.form-elements', ['mode' => 'create'])
                 </div>
 
                 <div class="card-footer">

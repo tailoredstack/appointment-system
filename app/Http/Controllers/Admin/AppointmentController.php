@@ -8,7 +8,10 @@ use App\Http\Requests\Admin\Appointment\DestroyAppointment;
 use App\Http\Requests\Admin\Appointment\IndexAppointment;
 use App\Http\Requests\Admin\Appointment\StoreAppointment;
 use App\Http\Requests\Admin\Appointment\UpdateAppointment;
+use App\Models\AdminUser;
 use App\Models\Appointment;
+use App\Models\Dentist;
+use App\Models\Service;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -38,12 +41,19 @@ class AppointmentController extends Controller
             $request,
 
             // set columns to query
-            ['date', 'dentist_id', 'end', 'id', 'service_id', 'start', 'status'],
+            ['date', 'dentist_id', 'end', 'id', 'service_id', 'start', 'status', 'patient_id'],
 
             // set columns to searchIn
             ['id', 'remarks', 'status'],
             function ($query) {
-                $query->with(['dentist', 'service']);
+                $query->with(['dentist', 'service', 'patient']);
+                if (auth()->user()->hasRole('Dentist')) {
+                    $query->where('dentist_id', auth()->user()->id);
+                }
+
+                if (auth()->user()->hasRole('Client')) {
+                    $query->where('patient_id', auth()->user()->id);
+                }
             }
         );
 
@@ -64,9 +74,14 @@ class AppointmentController extends Controller
     {
         $this->authorize('admin.appointment.create');
 
-        return view('admin.appointment.create', [
-            'mode' => 'create'
-        ]);
+        $dentists = collect(\Brackets\AdminAuth\Models\AdminUser::whereHas('roles', function ($query) {
+            $query->where('name', 'Dentist');
+        })->get())->map(function ($dentist) {
+            return ['id' => $dentist->id, 'name' => $dentist->full_name];
+        })->toArray();
+
+        $services = Service::select('id', 'name')->get();
+        return view('admin.appointment.create', compact('dentists', 'services'));
     }
 
     /**
@@ -80,8 +95,10 @@ class AppointmentController extends Controller
         // Sanitize input
         $sanitized = $request->getSanitized();
 
+        $user  = AdminUser::find(auth()->user()->id)->first();
+
         // Store the Appointment
-        $appointment = Appointment::create($sanitized);
+        $user->appointments()->create($sanitized);
 
         if ($request->ajax()) {
             return ['redirect' => url('admin/appointments'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
@@ -101,7 +118,7 @@ class AppointmentController extends Controller
     {
         $this->authorize('admin.appointment.show', $appointment);
 
-        // TODO your code goes here
+        return view('admin.appointment.show', ['appointment' => $appointment]);
     }
 
     /**
@@ -115,10 +132,11 @@ class AppointmentController extends Controller
     {
         $this->authorize('admin.appointment.edit', $appointment);
 
+        $owner = auth()->user()->id === $appointment->patient_id;
 
         return view('admin.appointment.edit', [
             'appointment' => $appointment,
-            'mode' => 'edit'
+            'owner' => $owner
         ]);
     }
 
