@@ -12,7 +12,7 @@
                 :data="{{ $service->toJson() }}"
                 v-cloak
                 inline-template>
-            
+
                 <form class="form-horizontal form-edit" method="post" @submit.prevent="onSubmit" :action="action" novalidate>
 
 
@@ -21,23 +21,23 @@
                     </div>
 
                     <div class="card-body">
-                        @include('admin.service.components.form-elements')
+                        @include('admin.service.components.form-elements', ['mode' => 'edit'])
                     </div>
-                    
-                    
+
+
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary" :disabled="submiting">
                             <i class="fa" :class="submiting ? 'fa-spinner' : 'fa-download'"></i>
                             {{ trans('brackets/admin-ui::admin.btn.save') }}
                         </button>
                     </div>
-                    
+
                 </form>
 
         </service-form>
 
         </div>
-    
+
 </div>
 
 @endsection
