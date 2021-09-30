@@ -15,7 +15,7 @@ class AppointmentExport implements FromCollection, WithMapping, WithHeadings
      */
     public function collection()
     {
-        return Appointment::all();
+        return Appointment::where('dentist_id', auth()->user()->id)->with(['dentist', 'patient', 'service'])->get();
     }
 
     /**
@@ -24,14 +24,15 @@ class AppointmentExport implements FromCollection, WithMapping, WithHeadings
     public function headings(): array
     {
         return [
-            trans('admin.appointment.columns.date'),
-            trans('admin.appointment.columns.dentist_id'),
-            trans('admin.appointment.columns.end'),
             trans('admin.appointment.columns.id'),
-            trans('admin.appointment.columns.remarks'),
+            trans('admin.appointment.columns.dentist_id'),
             trans('admin.appointment.columns.service_id'),
+            trans('admin.appointment.columns.patient_id'),
+            trans('admin.appointment.columns.date'),
             trans('admin.appointment.columns.start'),
+            trans('admin.appointment.columns.end'),
             trans('admin.appointment.columns.status'),
+            trans('admin.appointment.columns.remarks'),
         ];
     }
 
@@ -43,14 +44,15 @@ class AppointmentExport implements FromCollection, WithMapping, WithHeadings
     public function map($appointment): array
     {
         return [
-            $appointment->date,
-            $appointment->dentist_id,
-            $appointment->end,
             $appointment->id,
-            $appointment->remarks,
-            $appointment->service_id,
+            $appointment->dentist->full_name,
+            $appointment->service->name,
+            $appointment->patient->full_name,
+            $appointment->date,
             $appointment->start,
+            $appointment->end,
             $appointment->status,
+            $appointment->remarks,
         ];
     }
 }

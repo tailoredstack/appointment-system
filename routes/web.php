@@ -137,12 +137,12 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         Route::prefix('appointments')->name('appointments/')->group(static function () {
             Route::get('/',                                             'AppointmentController@index')->name('index');
             Route::get('/create',                                       'AppointmentController@create')->name('create');
+            Route::get('/export',                                       'AppointmentController@export')->name('export');
             Route::get('/{appointment}',                                'AppointmentController@show')->name('show');
             Route::post('/',                                            'AppointmentController@store')->name('store');
             Route::get('/{appointment}/edit',                           'AppointmentController@edit')->name('edit');
             Route::post('/{appointment}',                               'AppointmentController@update')->name('update');
             Route::delete('/{appointment}',                             'AppointmentController@destroy')->name('destroy');
-            Route::get('/export',                                       'AppointmentController@export')->name('export');
         });
     });
 });
@@ -150,8 +150,8 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
 
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
-    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
-        Route::prefix('feedback')->name('feedback/')->group(static function() {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function () {
+        Route::prefix('feedback')->name('feedback/')->group(static function () {
             Route::get('/',                                             'FeedbackController@index')->name('index');
             Route::get('/create',                                       'FeedbackController@create')->name('create');
             Route::post('/',                                            'FeedbackController@store')->name('store');
@@ -166,8 +166,8 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
 
 /* Auto-generated admin routes */
 Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
-    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
-        Route::prefix('feedback')->name('feedback/')->group(static function() {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function () {
+        Route::prefix('feedback')->name('feedback/')->group(static function () {
             Route::get('/',                                             'FeedbackController@index')->name('index');
             Route::get('/create',                                       'FeedbackController@create')->name('create');
             Route::post('/',                                            'FeedbackController@store')->name('store');

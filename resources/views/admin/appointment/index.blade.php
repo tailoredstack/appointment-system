@@ -15,7 +15,7 @@
                     <div class="card-header">
                         <i class="fa fa-align-justify"></i> {{ trans('admin.appointment.actions.index') }}
 @can('admin.appointment.export')
-                        <a class="btn btn-primary btn-sm pull-right m-b-0 ml-2" href="{{ url('admin/appointments/export') }}" role="button"><i class="fa fa-file-excel-o"></i>&nbsp; {{ trans('admin.appointment.actions.export') }}</a>
+                        <a class="btn btn-primary btn-sm pull-right m-b-0 ml-2" href="{{ url('admin/appointments/export') }}" role="button"><i class="fa fa-file-excel-o"></i>&nbsp; Export</a>
 @endcan
 @can('admin.appointment.create')
                         <a class="btn btn-primary btn-spinner btn-sm pull-right m-b-0" href="{{ url('admin/appointments/create') }}" role="button"><i class="fa fa-plus"></i>&nbsp; {{ trans('admin.appointment.actions.create') }}</a>
