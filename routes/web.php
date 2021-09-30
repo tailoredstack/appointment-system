@@ -146,3 +146,35 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('feedback')->name('feedback/')->group(static function() {
+            Route::get('/',                                             'FeedbackController@index')->name('index');
+            Route::get('/create',                                       'FeedbackController@create')->name('create');
+            Route::post('/',                                            'FeedbackController@store')->name('store');
+            Route::get('/{feedback}/show',                              'FeedbackController@show')->name('show');
+            Route::get('/{feedback}/edit',                              'FeedbackController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'FeedbackController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{feedback}',                                  'FeedbackController@update')->name('update');
+            Route::delete('/{feedback}',                                'FeedbackController@destroy')->name('destroy');
+        });
+    });
+});
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('feedback')->name('feedback/')->group(static function() {
+            Route::get('/',                                             'FeedbackController@index')->name('index');
+            Route::get('/create',                                       'FeedbackController@create')->name('create');
+            Route::post('/',                                            'FeedbackController@store')->name('store');
+            Route::get('/{feedback}/show',                              'FeedbackController@show')->name('show');
+            Route::get('/{feedback}/edit',                              'FeedbackController@edit')->name('edit');
+            Route::post('/{feedback}',                                  'FeedbackController@update')->name('update');
+            Route::delete('/{feedback}',                                'FeedbackController@destroy')->name('destroy');
+        });
+    });
+});

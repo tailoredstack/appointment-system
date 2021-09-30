@@ -145,3 +145,21 @@ $factory->define(App\Models\Appointment::class, static function (Faker\Generator
         
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Feedback::class, static function (Faker\Generator $faker) {
+    return [
+        
+        
+    ];
+});
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\Feedback::class, static function (Faker\Generator $faker) {
+    return [
+        'content' => $faker->text(),
+        'created_at' => $faker->dateTime,
+        'patient_id' => $faker->randomNumber(5),
+        'updated_at' => $faker->dateTime,
+        
+        
+    ];
+});

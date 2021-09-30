@@ -7,3 +7,4 @@ import './dentist';
 import './service';
 import './schedule';
 import './appointment';
+import './feedback';
