@@ -94,6 +94,7 @@ class ServiceController extends Controller
         $this->authorize('admin.service.show', $service);
 
         // TODO your code goes here
+        return view('admin.service.show', compact('service'));
     }
 
     /**
@@ -156,5 +157,4 @@ class ServiceController extends Controller
 
         return redirect()->back();
     }
-
-    }
+}

@@ -108,7 +108,9 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         Route::prefix('services')->name('services/')->group(static function () {
             Route::get('/',                                             'ServiceController@index')->name('index');
             Route::get('/create',                                       'ServiceController@create')->name('create');
+            Route::get('/create',                                       'ServiceController@create')->name('create');
             Route::post('/',                                            'ServiceController@store')->name('store');
+            Route::get('/{service}/show',                               'ServiceController@show')->name('show');
             Route::get('/{service}/edit',                               'ServiceController@edit')->name('edit');
             Route::post('/{service}',                                   'ServiceController@update')->name('update');
             Route::delete('/{service}',                                 'ServiceController@destroy')->name('destroy');
