@@ -20,6 +20,7 @@
            @can('admin.appointment')
            <li class="nav-item"><a class="nav-link" href="{{ url('admin/appointments') }}"><i class="nav-icon icon-graduation"></i> {{ trans('admin.appointment.title') }}</a></li>
            @endcan
+           <li class="nav-item"><a class="nav-link" href="{{ url('admin/feedback') }}"><i class="nav-icon icon-puzzle"></i> {{ trans('admin.feedback.title') }}</a></li>
            {{-- Do not delete me :) I'm used for auto-generation menu items --}}
 
             @canany(['admin.admin-user.index', 'admin.translation.index'])

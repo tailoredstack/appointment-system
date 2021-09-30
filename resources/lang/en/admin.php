@@ -197,6 +197,40 @@ return [
         ],
     ],
 
+    'feedback' => [
+        'title' => 'Feedback',
+
+        'actions' => [
+            'index' => 'Feedback',
+            'create' => 'New Feedback',
+            'show' => 'Show Feedback',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            
+        ],
+    ],
+
+    'feedback' => [
+        'title' => 'Feedback',
+
+        'actions' => [
+            'index' => 'Feedback',
+            'create' => 'New Feedback',
+            'show' => 'Show Feedback',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'content' => 'Content',
+            'patient_id' => 'Patient',
+            
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
 
 
