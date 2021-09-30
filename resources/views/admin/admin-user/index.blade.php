@@ -49,7 +49,7 @@
                                     <th is='sortable' :column="'last_name'">{{ trans('admin.admin-user.columns.last_name') }}</th>
                                     <th is='sortable' :column="'email'">{{ trans('admin.admin-user.columns.email') }}</th>
                                     <th is='sortable' :column="'phone_no'">{{ trans('admin.admin-user.columns.phone_no') }}</th>
-                                    <th is='sortable' :column="'language'">{{ trans('admin.admin-user.columns.language') }}</th>
+                                    <th  :column="'role'">Role</th>
                                     <th is='sortable' :column="'forbidden'">{{ trans('admin.admin-user.columns.forbidden') }}</th>
                                     <th is='sortable' :column="'last_login_at'">{{ trans('admin.admin-user.columns.last_login_at') }}</th>
 
@@ -69,7 +69,7 @@
                                     <td >@{{ item.last_name }}</td>
                                     <td >@{{ item.email }}</td>
                                     <td >@{{ item.phone_no }}</td>
-                                    <td >@{{ item.language }}</td>
+                                    <td >@{{ item.roles[0].name}}</td>
                                     <td >
                                         <label class="switch switch-3d switch-danger">
                                             <input type="checkbox" class="switch-input" v-model="collection[index].forbidden" @change="toggleSwitch(item.resource_url, 'forbidden', collection[index])">

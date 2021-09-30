@@ -54,7 +54,7 @@ class AdminUsersController extends Controller
     public function index(IndexAdminUser $request)
     {
         // create and AdminListing instance for a specific model and
-        $data = AdminListing::create(AdminUser::class)->processRequestAndGet(
+        $data = AdminListing::create(\Brackets\AdminAuth\Models\AdminUser::class)->processRequestAndGet(
             // pass the request with params
             $request,
 
@@ -62,7 +62,10 @@ class AdminUsersController extends Controller
             ['activated', 'email', 'first_name', 'forbidden', 'id', 'language', 'last_login_at', 'last_name', 'phone_no'],
 
             // set columns to searchIn
-            ['email', 'first_name', 'id', 'language', 'last_name', 'phone_no']
+            ['email', 'first_name', 'id', 'language', 'last_name', 'phone_no'],
+            function ($query) {
+                $query->with('roles');
+            }
         );
 
         if ($request->ajax()) {
