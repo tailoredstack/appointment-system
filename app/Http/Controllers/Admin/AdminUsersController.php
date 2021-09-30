@@ -104,19 +104,21 @@ class AdminUsersController extends Controller
         // Pull data we only need
         $user = collect($sanitized)->only(['first_name', 'last_name', 'email', 'phone_no'])->toArray();
 
+        $bracketsAdmin = \Brackets\AdminAuth\Models\AdminUser::find($adminUser->id);
+
         // But we do have a roles, so we need to attach the roles to the adminUser
-        $adminUser->roles()->sync(collect($request->input('roles', []))->map->id->toArray());
+        $bracketsAdmin->roles()->sync(collect($request->input('roles', []))->map->id->toArray());
 
         // Store user based on role
-        if ($adminUser->hasRole('Dentist')) {
+        if ($bracketsAdmin->hasRole('Dentist')) {
             $adminUser->dentist()->create($user);
         }
 
-        if ($adminUser->hasRole('Secretary')) {
+        if ($bracketsAdmin->hasRole('Secretary')) {
             $adminUser->secretary()->create($user);
         }
 
-        if ($adminUser->hasRole('Client')) {
+        if ($bracketsAdmin->hasRole('Client')) {
             $adminUser->patient()->create($user);
         }
 
