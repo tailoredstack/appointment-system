@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\AppointmentAccepted;
 use App\Events\AppointmentCancelled;
+use App\Listeners\SendAppointmentAcceptedSMSNotification;
 use App\Listeners\SendAppointmentCancelledSMSNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -22,6 +24,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         AppointmentCancelled::class => [
             SendAppointmentCancelledSMSNotification::class
+        ],
+        AppointmentAccepted::class => [
+            SendAppointmentAcceptedSMSNotification::class
         ]
     ];
 

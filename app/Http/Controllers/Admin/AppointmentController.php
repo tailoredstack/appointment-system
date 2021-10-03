@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\AppointmentAccepted;
 use App\Events\AppointmentCancelled;
 use App\Exports\AppointmentExport;
 use App\Http\Controllers\Controller;
@@ -167,7 +168,7 @@ class AppointmentController extends Controller
             if ($appointment->status === 'cancelled') {
                 AppointmentCancelled::dispatch($appointment);
             } else if ($appointment->status === 'accepted') {
-                // AppointmentAccepted::dispatch($appointment);
+                AppointmentAccepted::dispatch($appointment);
             }
         }
 
