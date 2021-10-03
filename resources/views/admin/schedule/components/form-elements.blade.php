@@ -1,3 +1,36 @@
+@if($mode && $mode === 'show')
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('date'), 'has-success': fields.date && fields.date.valid }">
+    <label for="date" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.schedule.columns.date') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-sm-8'">
+        <span v-text="form.dentist.full_name" />
+    </div>
+</div>
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('date'), 'has-success': fields.date && fields.date.valid }">
+    <label for="date" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.schedule.columns.date') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-sm-8'">
+        <span v-text="new Date(form.date).toLocaleDateString()" />
+    </div>
+</div>
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('end'), 'has-success': fields.end && fields.end.valid }">
+    <label for="end" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.schedule.columns.end') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <span v-text="form.end" />
+    </div>
+</div>
+
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('start'), 'has-success': fields.start && fields.start.valid }">
+    <label for="start" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.schedule.columns.start') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-8'">
+        <span v-text="form.start" />
+    </div>
+</div>
+
+@else
+
+
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('date'), 'has-success': fields.date && fields.date.valid }">
     <label for="date" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-2'">{{ trans('admin.schedule.columns.date') }}</label>
     <div :class="isFormLocalized ? 'col-md-4' : 'col-sm-8'">
@@ -34,3 +67,6 @@
 
 
 
+
+
+@endif

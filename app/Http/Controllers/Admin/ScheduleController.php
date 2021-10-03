@@ -98,7 +98,9 @@ class ScheduleController extends Controller
     {
         $this->authorize('admin.schedule.show', $schedule);
 
-        // TODO your code goes here
+        $schedule->load('dentist');
+
+        return view('admin.schedule.show', ['schedule' => $schedule]);
     }
 
     /**

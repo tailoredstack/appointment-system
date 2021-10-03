@@ -125,6 +125,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         Route::prefix('schedules')->name('schedules/')->group(static function () {
             Route::get('/',                                             'ScheduleController@index')->name('index');
             Route::get('/create',                                       'ScheduleController@create')->name('create');
+            Route::get('/{schedule}',                                   'ScheduleController@show')->name('show');
             Route::post('/',                                            'ScheduleController@store')->name('store');
             Route::get('/{schedule}/edit',                              'ScheduleController@edit')->name('edit');
             Route::post('/{schedule}',                                  'ScheduleController@update')->name('update');
