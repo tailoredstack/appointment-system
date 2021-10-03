@@ -32,4 +32,12 @@ abstract class TwilioSMS
             throw new BadMethodCallException();
         }
     }
+
+    public function send(string $to, string $message)
+    {
+        $this->create($to, [
+            'from' => $this->config->sms_number,
+            'body' => $message
+        ]);
+    }
 }
