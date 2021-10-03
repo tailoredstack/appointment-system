@@ -7,6 +7,18 @@ use Brackets\AdminAuth\Models\AdminUser as DefaultAdminUser;
 
 class AdminUser extends DefaultAdminUser
 {
+    protected $fillable = [
+        'email',
+        'password',
+        'first_name',
+        'last_name',
+        'activated',
+        'forbidden',
+        'language',
+        'last_login_at',
+        'phone_no'
+    ];
+
     public function patient()
     {
         return $this->hasOne(Patient::class, 'admin_users_id', 'id');
