@@ -89,6 +89,9 @@
                                                 <button class="btn btn-sm btn-warning" v-show="!item.activated" @click="resendActivation(item.resource_url + '/resend-activation')" title="Resend activation" role="button"><i class="fa fa-envelope-o"></i></button>
                                             </div>
                                             <div class="col-auto">
+                                                <a class="btn btn-sm btn-spinner btn-info" :href="item.resource_url + ''" title="{{ trans('brackets/admin-ui::admin.btn.show') }}" role="button"><i class="fa fa-eye"></i></a>
+                                            </div>
+                                            <div class="col-auto">
                                                 <a class="btn btn-sm btn-spinner btn-info" :href="item.resource_url + '/edit'" title="{{ trans('brackets/admin-ui::admin.btn.edit') }}" role="button"><i class="fa fa-edit"></i></a>
                                             </div>
                                             <form class="col" @submit.prevent="deleteItem(item.resource_url)">

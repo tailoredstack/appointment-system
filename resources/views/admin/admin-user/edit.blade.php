@@ -13,7 +13,7 @@
                 :data="{{ $adminUser->toJson() }}"
                 :activation="!!'{{ $activation }}'"
                 inline-template>
-            
+
                 <form class="form-horizontal form-edit" method="post" @submit.prevent="onSubmit" :action="action">
 
                     <div class="card-header">
@@ -22,7 +22,7 @@
 
                     <div class="card-body">
 
-                        @include('admin.admin-user.components.form-elements')
+                        @include('admin.admin-user.components.form-elements', ['mode' => 'edit'])
 
                     </div>
 

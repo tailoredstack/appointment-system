@@ -11,7 +11,7 @@
             <admin-user-form
                 :action="'{{ url('admin/admin-users') }}'"
                 :activation="!!'{{ $activation }}'"
-                
+
                 inline-template>
 
                 <form class="form-horizontal form-create" method="post" @submit.prevent="onSubmit" :action="action">
@@ -22,7 +22,7 @@
 
                     <div class="card-body">
 
-                        @include('admin.admin-user.components.form-elements')
+                        @include('admin.admin-user.components.form-elements', ['mode' => 'create'])
 
                     </div>
 

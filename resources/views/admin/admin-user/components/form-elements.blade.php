@@ -1,3 +1,4 @@
+@if($mode !== 'show')
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('first_name'), 'has-success': fields.first_name && fields.first_name.valid }">
     <label for="first_name" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-3'">{{ trans('admin.admin-user.columns.first_name') }}</label>
     <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-7'">
@@ -88,7 +89,73 @@
 <div class="form-group row align-items-center" :class="{'has-danger': errors.has('roles'), 'has-success': fields.roles && fields.roles.valid }">
     <label for="roles" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-3'">{{ trans('admin.admin-user.columns.roles') }}</label>
     <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-7'">
-        <multiselect v-model="form.roles" placeholder="{{ trans('brackets/admin-ui::admin.forms.select_options') }}" label="name" track-by="id" :options="{{ $roles->toJson() }}" :multiple="true" open-direction="bottom"></multiselect>
+        <select v-model="form.roles" v-validate="'required'" @input="validate($event)" class="form-control custom-select" :class="{'form-control-danger': errors.has('roles'), 'form-control-success': fields.roles && fields.roles.valid}" id="roles" name="roles" placeholder="{{ trans('admin.appointment.columns.roles') }}">
+            @foreach ($roles as $role)
+                <option value="{{$role->id}}">{{$role->name}}</option>
+            @endforeach
+        </select>
         <div v-if="errors.has('roles')" class="form-control-feedback form-text" v-cloak>@{{ errors.first('roles') }}</div>
     </div>
 </div>
+
+@else
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('first_name'), 'has-success': fields.first_name && fields.first_name.valid }">
+    <label for="first_name" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-3'">{{ trans('admin.admin-user.columns.first_name') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-7'">
+        <span v-text="form.first_name" />
+    </div>
+</div>
+
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('last_name'), 'has-success': fields.last_name && fields.last_name.valid }">
+    <label for="last_name" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-3'">{{ trans('admin.admin-user.columns.last_name') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-7'">
+        <span v-text="form.last_name" />
+    </div>
+</div>
+
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('email'), 'has-success': fields.email && fields.email.valid }">
+    <label for="email" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-3'">{{ trans('admin.admin-user.columns.email') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-7'">
+        <span v-text="form.email" />
+    </div>
+</div>
+
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('phone_no'), 'has-success': fields.phone_no && fields.phone_no.valid }">
+    <label for="phone_no" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-3'">{{ trans('admin.admin-user.columns.phone_no') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-7'">
+        <span v-text="form.phone_no" />
+    </div>
+</div>
+
+
+<div class="form-group row align-items-center" :class="{'has-danger': errors.has('language'), 'has-success': fields.language && fields.language.valid }">
+    <label for="language" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-3'">{{ trans('admin.admin-user.columns.language') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-7'">
+        <span v-text="form.language" />
+    </div>
+</div>
+
+
+<div class="form-group row" :class="{'has-danger': errors.has('activated'), 'has-success': fields.activated && fields.activated.valid }">
+    <label class="col-form-label text-md-right" for="activated" :class="isFormLocalized ? 'col-md-4' : 'col-md-3'">
+        {{ trans('admin.admin-user.columns.activated') }}
+    </label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-7'">
+        <span>@{{form.activated ? 'Yes' : 'No'}}</span>
+    </div>
+</div>
+
+
+
+<div class="form-group row" :class="{'has-danger': errors.has('roles'), 'has-success': fields.roles && fields.roles.valid }">
+    <label for="roles" class="col-form-label text-md-right" :class="isFormLocalized ? 'col-md-4' : 'col-md-3'">{{ trans('admin.admin-user.columns.roles') }}</label>
+    <div :class="isFormLocalized ? 'col-md-4' : 'col-md-9 col-xl-7'">
+        <span v-text="form.roles[0]['name']" />
+    </div>
+</div>
+
+@endif

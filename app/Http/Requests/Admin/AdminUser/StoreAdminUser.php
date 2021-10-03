@@ -35,9 +35,9 @@ class StoreAdminUser extends FormRequest
             'last_name' => ['nullable', 'string'],
             'password' => ['required', 'confirmed', 'min:7', 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9]).*$/', 'string'],
             'phone_no' => ['nullable', 'string'],
-                
-            'roles' => ['array'],
-                
+
+            'roles' => ['required'],
+
         ];
 
         if (Config::get('admin-auth.activation_enabled')) {
@@ -61,6 +61,8 @@ class StoreAdminUser extends FormRequest
         if (!empty($data['password'])) {
             $data['password'] = Hash::make($data['password']);
         }
+
+        $data['roles'] = [$data['roles']];
         return $data;
     }
 }
