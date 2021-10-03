@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\AppointmentAccepted;
+use App\Events\AppointmentCancelled;
+use App\Events\AppointmentRejected;
 use App\Exports\AppointmentExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Appointment\DestroyAppointment;
@@ -10,7 +13,6 @@ use App\Http\Requests\Admin\Appointment\StoreAppointment;
 use App\Http\Requests\Admin\Appointment\UpdateAppointment;
 use App\Models\AdminUser;
 use App\Models\Appointment;
-use App\Models\Dentist;
 use App\Models\Service;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
@@ -155,6 +157,23 @@ class AppointmentController extends Controller
 
         // Update changed values Appointment
         $appointment->update($sanitized);
+        $appointment->refresh();
+
+        // load relationships
+        $appointment->load('patient', 'dentist', 'service');
+
+
+        // send notifications : only send notifications when appointment is updated by client
+        if (!auth()->user()->hasRole('Client')) {
+            // Send notifications when an appointment is cancelled by personnel
+            if ($appointment->status === 'cancelled') {
+                AppointmentCancelled::dispatch($appointment);
+            } else if ($appointment->status === 'accepted') {
+                AppointmentAccepted::dispatch($appointment);
+            } else if ($appointment->status === 'rejected') {
+                AppointmentRejected::dispatch($appointment);
+            }
+        }
 
         if ($request->ajax()) {
             return [
