@@ -23,6 +23,6 @@ class SendAppointmentCancelledSMSNotification extends TwilioSMS
     private function message(Appointment $appointment): string
     {
         $date = (new Carbon($appointment->date))->format('m-d-Y');
-        return "\nHello {$appointment->patient->full_name}!\n Your appointment on {$date}  with {$appointment->dentist->full_name} is cancelled for reason:\n {$appointment->remarks}";
+        return "\nHello {$appointment->patient->full_name}!\n Your appointment on {$date}  with {$appointment->dentist->full_name}  for {$appointment->service->name} is cancelled for reason:\n {$appointment->remarks}";
     }
 }

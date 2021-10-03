@@ -23,6 +23,6 @@ class SendAppointmentAcceptedSMSNotification extends TwilioSMS
     private function message(Appointment $appointment)
     {
         $date = (new Carbon($appointment->date))->format('m-d-Y');
-        return "\nHello {$appointment->patient->full_name}!\n Your appointment on {$date}  with {$appointment->dentist->full_name} is accepted";
+        return "\nHello {$appointment->patient->full_name}!\n Your appointment on {$date}  with {$appointment->dentist->full_name}  for {$appointment->service->name} is accepted";
     }
 }
