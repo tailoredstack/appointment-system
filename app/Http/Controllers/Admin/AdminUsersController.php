@@ -110,7 +110,7 @@ class AdminUsersController extends Controller
         $bracketsAdmin = \Brackets\AdminAuth\Models\AdminUser::find($adminUser->id);
 
         // But we do have a roles, so we need to attach the roles to the adminUser
-        $bracketsAdmin->roles()->sync(collect($request->input('roles', []))->map->id->toArray());
+        $bracketsAdmin->roles()->sync(collect($sanitized['roles'])->toArray());
 
         // Store user based on role
         if ($bracketsAdmin->hasRole('Dentist')) {
@@ -139,11 +139,12 @@ class AdminUsersController extends Controller
      * @throws AuthorizationException
      * @return void
      */
-    public function show(AdminUser $adminUser)
+    public function show(\Brackets\AdminAuth\Models\AdminUser $adminUser)
     {
         $this->authorize('admin.admin-user.show', $adminUser);
+        $adminUser->load('roles');
 
-        // TODO your code goes here
+        return view('admin.admin-user.show', ['adminUser' => $adminUser]);
     }
 
     /**

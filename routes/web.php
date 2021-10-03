@@ -25,6 +25,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::get('/',                                             'AdminUsersController@index')->name('index');
             Route::get('/create',                                       'AdminUsersController@create')->name('create');
             Route::post('/',                                            'AdminUsersController@store')->name('store');
+            Route::get('/{adminUser}',                                  'AdminUsersController@show')->name('show');
             Route::get('/{adminUser}/impersonal-login',                 'AdminUsersController@impersonalLogin')->name('impersonal-login');
             Route::get('/{adminUser}/edit',                             'AdminUsersController@edit')->name('edit');
             Route::post('/{adminUser}',                                 'AdminUsersController@update')->name('update');
