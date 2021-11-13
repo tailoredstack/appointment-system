@@ -163,3 +163,10 @@ $factory->define(App\Models\Feedback::class, static function (Faker\Generator $f
         
     ];
 });
+/** @var  \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Models\ActivityLog::class, static function (Faker\Generator $faker) {
+    return [
+        
+        
+    ];
+});
