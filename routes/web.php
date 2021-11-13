@@ -182,3 +182,20 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
         });
     });
 });
+
+
+/* Auto-generated admin routes */
+Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->group(static function () {
+    Route::prefix('admin')->namespace('App\Http\Controllers\Admin')->name('admin/')->group(static function() {
+        Route::prefix('activity-logs')->name('activity-logs/')->group(static function() {
+            Route::get('/',                                             'ActivityLogController@index')->name('index');
+            Route::get('/create',                                       'ActivityLogController@create')->name('create');
+            Route::post('/',                                            'ActivityLogController@store')->name('store');
+            Route::get('/{activityLog}/show',                           'ActivityLogController@show')->name('show');
+            Route::get('/{activityLog}/edit',                           'ActivityLogController@edit')->name('edit');
+            Route::post('/bulk-destroy',                                'ActivityLogController@bulkDestroy')->name('bulk-destroy');
+            Route::post('/{activityLog}',                               'ActivityLogController@update')->name('update');
+            Route::delete('/{activityLog}',                             'ActivityLogController@destroy')->name('destroy');
+        });
+    });
+});
