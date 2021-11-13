@@ -31,10 +31,7 @@ class FillPermissionsForActivityLog extends Migration
             'admin.activity-log',
             'admin.activity-log.index',
             'admin.activity-log.create',
-            'admin.activity-log.show',
-            'admin.activity-log.edit',
-            'admin.activity-log.delete',
-            'admin.activity-log.bulk-delete',
+            'admin.activity-log.show'
         ]);
 
         //Add New permissions
@@ -60,7 +57,7 @@ class FillPermissionsForActivityLog extends Migration
                 'permissions' => $permissions,
             ],
             [
-                'name' => 'Doctor',
+                'name' => 'Dentist',
                 'guard_name' => $this->guardName,
                 'permissions' => $permissions,
             ]
