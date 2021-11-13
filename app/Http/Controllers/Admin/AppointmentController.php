@@ -160,7 +160,8 @@ class AppointmentController extends Controller
         $appointment->refresh();
 
         // load relationships
-        $appointment->load('patient', 'dentist', 'service');
+        // patient.patient for patient model relation
+        $appointment->load('patient', 'dentist', 'service', 'patient.patient');
 
 
         // send notifications : only send notifications when appointment is updated by client

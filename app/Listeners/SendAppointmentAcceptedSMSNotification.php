@@ -17,7 +17,7 @@ class SendAppointmentAcceptedSMSNotification extends TwilioSMS
      */
     public function handle(AppointmentAccepted $event)
     {
-        $this->send($event->appointment->patient->phone_no, $this->message($event->appointment));
+        $this->send($event->appointment->patient->patient->phone_no, $this->message($event->appointment));
     }
 
     private function message(Appointment $appointment)

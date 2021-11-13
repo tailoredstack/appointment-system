@@ -18,7 +18,7 @@ class SendAppointmentRejectedSMSNotification extends TwilioSMS
      */
     public function handle(AppointmentRejected $event)
     {
-        $this->send($event->appointment->patient->phone_no, $this->message($event->appointment));
+        $this->send($event->appointment->patient->patient->phone_no, $this->message($event->appointment));
     }
 
     private function message(Appointment $appointment): string
