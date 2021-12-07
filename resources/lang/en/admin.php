@@ -231,6 +231,39 @@ return [
         ],
     ],
 
+    'activity-log' => [
+        'title' => 'Activity Log',
+
+        'actions' => [
+            'index' => 'Activity Log',
+            'create' => 'New Activity Log',
+            'show' => 'Show Activity Log',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            
+        ],
+    ],
+
+    'activity-log' => [
+        'title' => 'Activity Log',
+
+        'actions' => [
+            'index' => 'Activity Log',
+            'create' => 'New Activity Log',
+            'show' => 'Show Activity Log',
+            'edit' => 'Edit :name',
+        ],
+
+        'columns' => [
+            'id' => 'ID',
+            'appointment_id' => 'Appointment',
+            
+        ],
+    ],
+
     // Do not delete me :) I'm used for auto-generation
 
 

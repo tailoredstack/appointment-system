@@ -5,6 +5,8 @@ namespace App\Providers;
 use App\Events\AppointmentAccepted;
 use App\Events\AppointmentCancelled;
 use App\Events\AppointmentRejected;
+use App\Events\ClientArrived;
+use App\Listeners\ClientArrivedActivity;
 use App\Listeners\SendAppointmentAcceptedSMSNotification;
 use App\Listeners\SendAppointmentCancelledSMSNotification;
 use App\Listeners\SendAppointmentRejectedSMSNotification;
