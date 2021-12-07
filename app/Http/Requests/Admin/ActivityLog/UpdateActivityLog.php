@@ -26,6 +26,7 @@ class UpdateActivityLog extends FormRequest
     public function rules(): array
     {
         return [
+            'appointment_id' => ['sometimes', 'integer'],
             
         ];
     }

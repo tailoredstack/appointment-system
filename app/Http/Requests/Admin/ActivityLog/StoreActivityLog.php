@@ -26,15 +26,16 @@ class StoreActivityLog extends FormRequest
     public function rules(): array
     {
         return [
-            
+            'appointment_id' => ['required', 'integer'],
+            'name' => ['required']
         ];
     }
 
     /**
-    * Modify input data
-    *
-    * @return array
-    */
+     * Modify input data
+     *
+     * @return array
+     */
     public function getSanitized(): array
     {
         $sanitized = $this->validated();

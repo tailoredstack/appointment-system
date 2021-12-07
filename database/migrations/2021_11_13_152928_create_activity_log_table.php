@@ -16,6 +16,7 @@ class CreateActivityLogTable extends Migration
         Schema::create('activity_log', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('appointment_id')->unsigned();
+            $table->string('name');
             $table->timestamps();
 
             $table->foreign('appointment_id')->references('id')->on('appointment');

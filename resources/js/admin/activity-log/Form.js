@@ -5,6 +5,7 @@ Vue.component('activity-log-form', {
     data: function() {
         return {
             form: {
+                appointment_id:  '' ,
                 
             }
         }

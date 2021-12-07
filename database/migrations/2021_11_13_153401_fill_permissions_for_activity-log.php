@@ -31,7 +31,10 @@ class FillPermissionsForActivityLog extends Migration
             'admin.activity-log',
             'admin.activity-log.index',
             'admin.activity-log.create',
-            'admin.activity-log.show'
+            'admin.activity-log.show',
+            'admin.activity-log.edit',
+            'admin.activity-log.delete',
+            'admin.activity-log.bulk-delete',
         ]);
 
         //Add New permissions

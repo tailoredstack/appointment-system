@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\ClientArrived;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ActivityLog\BulkDestroyActivityLog;
 use App\Http\Requests\Admin\ActivityLog\DestroyActivityLog;
@@ -9,6 +10,7 @@ use App\Http\Requests\Admin\ActivityLog\IndexActivityLog;
 use App\Http\Requests\Admin\ActivityLog\StoreActivityLog;
 use App\Http\Requests\Admin\ActivityLog\UpdateActivityLog;
 use App\Models\ActivityLog;
+use App\Models\Appointment;
 use Brackets\AdminListing\Facades\AdminListing;
 use Exception;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -37,11 +39,16 @@ class ActivityLogController extends Controller
             $request,
 
             // set columns to query
-            [''],
+            ['appointment_id', 'id', 'created_at', 'name'],
 
             // set columns to searchIn
-            ['']
+            ['id', 'name'],
+            function ($query) {
+                $query->with(['appointment', 'appointment.service', 'appointment.patient']);
+            }
         );
+
+
 
         if ($request->ajax()) {
             if ($request->has('bulk')) {
@@ -79,11 +86,10 @@ class ActivityLogController extends Controller
         // Sanitize input
         $sanitized = $request->getSanitized();
 
-        // Store the ActivityLog
-        $activityLog = ActivityLog::create($sanitized);
+        ActivityLog::create($sanitized);
 
         if ($request->ajax()) {
-            return ['redirect' => url('admin/activity-logs'), 'message' => trans('brackets/admin-ui::admin.operation.succeeded')];
+            return ['message' => trans('brackets/admin-ui::admin.operation.succeeded')];
         }
 
         return redirect('admin/activity-logs');
@@ -171,7 +177,7 @@ class ActivityLogController extends Controller
      * @throws Exception
      * @return Response|bool
      */
-    public function bulkDestroy(BulkDestroyActivityLog $request) : Response
+    public function bulkDestroy(BulkDestroyActivityLog $request): Response
     {
         DB::transaction(static function () use ($request) {
             collect($request->data['ids'])

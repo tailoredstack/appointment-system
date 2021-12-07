@@ -11,6 +11,7 @@ use App\Http\Requests\Admin\Appointment\DestroyAppointment;
 use App\Http\Requests\Admin\Appointment\IndexAppointment;
 use App\Http\Requests\Admin\Appointment\StoreAppointment;
 use App\Http\Requests\Admin\Appointment\UpdateAppointment;
+use App\Models\ActivityLog;
 use App\Models\AdminUser;
 use App\Models\Appointment;
 use App\Models\Service;
@@ -162,6 +163,11 @@ class AppointmentController extends Controller
         // load relationships
         // patient.patient for patient model relation
         $appointment->load('patient', 'dentist', 'service', 'patient.patient');
+
+        // If appointment is done then add activity log
+        if ($appointment->status === 'done') {
+            ActivityLog::create(['appointment_id' => $appointment->id, 'name' => 'Service Done']);
+        }
 
 
         // send notifications : only send notifications when appointment is updated by client
