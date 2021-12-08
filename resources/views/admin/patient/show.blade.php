@@ -1,6 +1,6 @@
 @extends('brackets/admin-ui::admin.layout.default')
 
-@section('title', trans('admin.patient.actions.edit', ['name' => $patient->email]))
+@section('title', trans('admin.patient.actions.show', ['name' => "$patient->first_name $patient->last_name"]))
 
 @section('body')
 
@@ -14,11 +14,13 @@
 
 
                 <div class="card-header">
-                    <i class="fa fa-pencil"></i> {{ trans('admin.patient.actions.edit', ['name' => $patient->email]) }}
+                    <i class="fa fa-eye"></i> {{ trans('admin.patient.actions.show', ['name' => "$patient->first_name
+                    $patient->last_name"])
+                    }}
                 </div>
 
                 <div class="card-body">
-                    @include('admin.patient.components.form-elements', ['mode' => 'mutate'])
+                    @include('admin.patient.components.form-elements', ['mode'=> 'show'])
                 </div>
 
 

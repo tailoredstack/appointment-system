@@ -4,39 +4,37 @@
 
 @section('body')
 
-    <div class="container-xl">
+<div class="container-xl">
 
-                <div class="card">
-        
-        <dentist-form
-            :action="'{{ url('admin/dentists') }}'"
-            v-cloak
-            inline-template>
+    <div class="card">
 
-            <form class="form-horizontal form-create" method="post" @submit.prevent="onSubmit" :action="action" novalidate>
-                
+        <dentist-form :action="'{{ url('admin/dentists') }}'" v-cloak inline-template>
+
+            <form class="form-horizontal form-create" method="post" @submit.prevent="onSubmit" :action="action"
+                novalidate>
+
                 <div class="card-header">
                     <i class="fa fa-plus"></i> {{ trans('admin.dentist.actions.create') }}
                 </div>
 
                 <div class="card-body">
-                    @include('admin.dentist.components.form-elements')
+                    @include('admin.dentist.components.form-elements', ['mode' => 'create'])
                 </div>
-                                
+
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary" :disabled="submiting">
                         <i class="fa" :class="submiting ? 'fa-spinner' : 'fa-download'"></i>
                         {{ trans('brackets/admin-ui::admin.btn.save') }}
                     </button>
                 </div>
-                
+
             </form>
 
         </dentist-form>
 
-        </div>
+    </div>
 
-        </div>
+</div>
 
-    
+
 @endsection
