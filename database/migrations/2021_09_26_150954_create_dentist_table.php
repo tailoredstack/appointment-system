@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Dentist;
 
 class CreateDentistTable extends Migration
 {
@@ -23,6 +24,14 @@ class CreateDentistTable extends Migration
             $table->foreign('admin_users_id')->references('id')->on('admin_users')->onDelete('cascade');
             $table->timestamps();
         });
+
+        Dentist::create([
+            'admin_users_id' => 4,
+            'email' => 'jamesdoe@email.com',
+            'first_name' => 'James',
+            'last_name' => 'Doe',
+            'phone_no' => env('DEFAULT_PATIENT_PHONE_NO', '+639279588529'),
+        ]);
     }
 
     /**
