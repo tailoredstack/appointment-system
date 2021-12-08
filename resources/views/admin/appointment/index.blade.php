@@ -102,7 +102,7 @@
                                             @can('admin.appointment.edit')
                                             <div class="col">
                                                 <a class="btn btn-sm btn-spinner btn-info"
-                                                    :class="{ disabled: ['cancelled', 'rejected'].includes(item.status) }"
+                                                    :class="{ disabled: ['cancelled', 'rejected', 'done'].includes(item.status) }"
                                                     :href="item.resource_url + '/edit'"
                                                     title="{{ trans('brackets/admin-ui::admin.btn.edit') }}"
                                                     role="button"><i class="fa fa-edit"></i></a>
