@@ -52,6 +52,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::get('/',                                             'PatientController@index')->name('index');
             Route::get('/create',                                       'PatientController@create')->name('create');
             Route::post('/',                                            'PatientController@store')->name('store');
+            Route::get('/{patient}',                                    'PatientController@show')->name('show');
             Route::get('/{patient}/edit',                               'PatientController@edit')->name('edit');
             Route::post('/{patient}',                                   'PatientController@update')->name('update');
             Route::delete('/{patient}',                                 'PatientController@destroy')->name('destroy');
@@ -81,7 +82,7 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::get('/',                                             'DentistController@index')->name('index');
             Route::get('/create',                                       'DentistController@create')->name('create');
             Route::post('/',                                            'DentistController@store')->name('store');
-            Route::get('/{dentist}',                               'DentistController@show')->name('show');
+            Route::get('/{dentist}',                                    'DentistController@show')->name('show');
             Route::get('/{dentist}/edit',                               'DentistController@edit')->name('edit');
             Route::post('/bulk-destroy',                                'DentistController@bulkDestroy')->name('bulk-destroy');
             Route::post('/{dentist}',                                   'DentistController@update')->name('update');
