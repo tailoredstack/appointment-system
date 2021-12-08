@@ -93,7 +93,7 @@ class DentistController extends Controller
     {
         $this->authorize('admin.dentist.show', $dentist);
 
-        // TODO your code goes here
+        return view('admin.dentist.show', compact('dentist'));
     }
 
     /**
@@ -156,5 +156,4 @@ class DentistController extends Controller
 
         return redirect()->back();
     }
-
-    }
+}
