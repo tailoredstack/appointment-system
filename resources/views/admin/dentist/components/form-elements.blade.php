@@ -1,4 +1,4 @@
-@if(!$mode)
+@if($mode !== 'show')
 <div class="form-group row align-items-center"
     :class="{'has-danger': errors.has('admin_users_id'), 'has-success': fields.admin_users_id && fields.admin_users_id.valid }">
     <label for="admin_users_id" class="col-form-label text-md-right"
