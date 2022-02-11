@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    if (auth()->user()) {
+        return redirect('admin');
+    }
+    return redirect('admin/signin');
 });
 
 
@@ -199,5 +202,15 @@ Route::middleware(['auth:' . config('admin-auth.defaults.guard'), 'admin'])->gro
             Route::post('/{activityLog}',                               'ActivityLogController@update')->name('update');
             Route::delete('/{activityLog}',                             'ActivityLogController@destroy')->name('destroy');
         });
+    });
+});
+
+
+
+Route::middleware(['web'])->group(static function () {
+    Route::namespace('App\Http\Controllers\Admin')->group(static function () {
+        Route::get('/admin/register', 'AdminUsersController@register')->name('register');
+        Route::post('/admin/register', 'AdminUsersController@store')->name('store');
+        Route::get('/admin/signin', 'AdminUsersController@signin')->name('brackets/admin-auth::admin/login');
     });
 });

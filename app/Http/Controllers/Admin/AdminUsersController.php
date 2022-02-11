@@ -91,6 +91,23 @@ class AdminUsersController extends Controller
         ]);
     }
 
+    public function register()
+    {
+        if (auth()->user()) {
+            return redirect('/admin');
+        }
+
+        return view('admin.auth.register');
+    }
+
+    public function signin()
+    {
+        if (auth()->user()) {
+            return redirect('/admin');
+        }
+        return view('admin.auth.login');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -102,8 +119,10 @@ class AdminUsersController extends Controller
         // Sanitize input
         $sanitized = $request->getModifiedData();
 
+        $adminUserData = collect($sanitized)->except(['from_registration_page'])->toArray();
+
         // Store the AdminUser
-        $adminUser = AdminUser::create($sanitized);
+        $adminUser = AdminUser::create($adminUserData);
         // Pull data we only need
         $user = collect($sanitized)->only(['first_name', 'last_name', 'email', 'phone_no'])->toArray();
 
@@ -123,6 +142,10 @@ class AdminUsersController extends Controller
 
         if ($bracketsAdmin->hasRole('Client')) {
             $adminUser->patient()->create($user);
+        }
+
+        if (collect($sanitized)->has('from_registration_page')) {
+            return redirect('admin/login');
         }
 
         if ($request->ajax()) {
