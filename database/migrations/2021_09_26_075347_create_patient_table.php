@@ -27,10 +27,10 @@ class CreatePatientTable extends Migration
 
         Patient::create([
             'admin_users_id' => 2,
-            'email' => 'johnnysince@email.com',
-            'first_name' => 'Since',
-            'last_name' => 'Since',
-            'phone_no' => env('DEFAULT_PATIENT_PHONE_NO', '+639279588529'),
+            'first_name' => env('DEFAULT_USER_CLIENT_FIRST_NAME'),
+            'last_name' => env('DEFAULT_USER_CLIENT_LAST_NAME'),
+            'email' => env('DEFAULT_USER_CLIENT_EMAIL'),
+            'phone_no' => env('DEFAULT_USER_CLIENT_PHONE_NO'),
         ]);
     }
 

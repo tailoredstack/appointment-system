@@ -27,10 +27,10 @@ class CreateSecretaryTable extends Migration
 
         Secretary::create([
             'admin_users_id' => 3,
-            'email' => 'janedoe@email.com',
-            'first_name' => 'Jane',
-            'last_name' => 'Doe',
-            'phone_no' => env('DEFAULT_PATIENT_PHONE_NO', '+639279588529'),
+            'first_name' => env('DEFAULT_USER_SECRETARY_FIRST_NAME'),
+            'last_name' => env('DEFAULT_USER_SECRETARY_LAST_NAME'),
+            'email' => env('DEFAULT_USER_SECRETARY_EMAIL'),
+            'phone_no' => env('DEFAULT_USER_SECRETARY_PHONE_NO'),
         ]);
     }
 

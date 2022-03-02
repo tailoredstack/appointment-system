@@ -27,10 +27,10 @@ class CreateDentistTable extends Migration
 
         Dentist::create([
             'admin_users_id' => 4,
-            'email' => 'jamesdoe@email.com',
-            'first_name' => 'James',
-            'last_name' => 'Doe',
-            'phone_no' => env('DEFAULT_PATIENT_PHONE_NO', '+639279588529'),
+            'first_name' => env('DEFAULT_USER_DENTIST_FIRST_NAME'),
+            'last_name' => env('DEFAULT_USER_DENTIST_LAST_NAME'),
+            'email' => env('DEFAULT_USER_DENTIST_EMAIL'),
+            'phone_no' => env('DEFAULT_USER_DENTIST_PHONE_NO'),
         ]);
     }
 

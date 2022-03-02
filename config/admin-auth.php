@@ -50,7 +50,7 @@ return [
     |
     */
 
-    'logout_redirect' => '/admin/login',
+    'logout_redirect' => '/admin/signin',
 
     /*
     |--------------------------------------------------------------------------
@@ -61,7 +61,7 @@ return [
     |
     */
 
-    'password_reset_redirect' => '/admin/login',
+    'password_reset_redirect' => '/admin/signin',
 
     /*
     |--------------------------------------------------------------------------
@@ -73,7 +73,7 @@ return [
     |
     */
 
-    'activation_redirect' => '/admin/login',
+    'activation_redirect' => '/admin/signin',
 
     /*
     |

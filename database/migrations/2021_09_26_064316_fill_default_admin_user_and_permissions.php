@@ -4,8 +4,10 @@ use Brackets\AdminAuth\Models\AdminUser;
 use Carbon\Carbon;
 use Illuminate\Config\Repository;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Schema;
 
 /**
  * Class FillDefaultAdminUserAndPermissions
@@ -131,9 +133,10 @@ class FillDefaultAdminUserAndPermissions extends Migration
         //Add new users
         $this->users = [
             [
-                'first_name' => 'John',
-                'last_name' => 'Doe',
-                'email' => 'johndoe@email.com',
+                'first_name' => env('DEFAULT_USER_ADMIN_FIRST_NAME'),
+                'last_name' => env('DEFAULT_USER_ADMIN_LAST_NAME'),
+                'email' => env('DEFAULT_USER_ADMIN_EMAIL'),
+                'phone_no' => env('DEFAULT_USER_ADMIN_PHONE_NO'),
                 'password' => Hash::make($this->password),
                 'remember_token' => null,
                 'created_at' => Carbon::now(),
@@ -151,67 +154,68 @@ class FillDefaultAdminUserAndPermissions extends Migration
             ],
         ];
 
-        if (env('APP_ENV') === 'local') {
-            array_push($this->users, [
-                'first_name' => 'Johnny',
-                'last_name' => 'Since',
-                'email' => 'johnnysince@email.com',
-                'password' => Hash::make($this->password),
-                'remember_token' => null,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-                'activated' => true,
-                'roles' => [
-                    [
-                        'name' => 'Client',
-                        'guard_name' => $this->guardName,
-                    ],
+        array_push($this->users, [
+            'first_name' => env('DEFAULT_USER_CLIENT_FIRST_NAME'),
+            'last_name' => env('DEFAULT_USER_CLIENT_LAST_NAME'),
+            'email' => env('DEFAULT_USER_CLIENT_EMAIL'),
+            'phone_no' => env('DEFAULT_USER_CLIENT_PHONE_NO'),
+            'password' => Hash::make($this->password),
+            'remember_token' => null,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+            'activated' => true,
+            'roles' => [
+                [
+                    'name' => 'Client',
+                    'guard_name' => $this->guardName,
                 ],
-                'permissions' => [
-                    //
-                ],
-            ]);
+            ],
+            'permissions' => [
+                //
+            ],
+        ]);
 
-            array_push($this->users, [
-                'first_name' => 'Jane',
-                'last_name' => 'Doe',
-                'email' => 'janedoe@email.com',
-                'password' => Hash::make($this->password),
-                'remember_token' => null,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-                'activated' => true,
-                'roles' => [
-                    [
-                        'name' => 'Secretary',
-                        'guard_name' => $this->guardName,
-                    ],
+        array_push($this->users, [
+            'first_name' => env('DEFAULT_USER_SECRETARY_FIRST_NAME'),
+            'last_name' => env('DEFAULT_USER_SECRETARY_LAST_NAME'),
+            'email' => env('DEFAULT_USER_SECRETARY_EMAIL'),
+            'phone_no' => env('DEFAULT_USER_SECRETARY_PHONE_NO'),
+            'password' => Hash::make($this->password),
+            'remember_token' => null,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+            'activated' => true,
+            'roles' => [
+                [
+                    'name' => 'Secretary',
+                    'guard_name' => $this->guardName,
                 ],
-                'permissions' => [
-                    //
-                ],
-            ]);
+            ],
+            'permissions' => [
+                //
+            ],
+        ]);
 
-            array_push($this->users, [
-                'first_name' => 'James',
-                'last_name' => 'Doe',
-                'email' => 'jamesdoe@email.com',
-                'password' => Hash::make($this->password),
-                'remember_token' => null,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-                'activated' => true,
-                'roles' => [
-                    [
-                        'name' => 'Dentist',
-                        'guard_name' => $this->guardName,
-                    ],
+        array_push($this->users, [
+            'first_name' => env('DEFAULT_USER_DENTIST_FIRST_NAME'),
+            'last_name' => env('DEFAULT_USER_DENTIST_LAST_NAME'),
+            'email' => env('DEFAULT_USER_DENTIST_EMAIL'),
+            'phone_no' => env('DEFAULT_USER_DENTIST_PHONE_NO'),
+            'password' => Hash::make($this->password),
+            'remember_token' => null,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+            'activated' => true,
+            'roles' => [
+                [
+                    'name' => 'Dentist',
+                    'guard_name' => $this->guardName,
                 ],
-                'permissions' => [
-                    //
-                ],
-            ]);
-        }
+            ],
+            'permissions' => [
+                //
+            ],
+        ]);
     }
 
     /**
@@ -222,6 +226,10 @@ class FillDefaultAdminUserAndPermissions extends Migration
      */
     public function up(): void
     {
+        Schema::table('admin_users', function (Blueprint $table) {
+            $table->string('phone_no')->nullable();
+        });
+
         if ($this->userClassName === null) {
             throw new RuntimeException('Admin user model not defined');
         }
@@ -333,6 +341,10 @@ class FillDefaultAdminUserAndPermissions extends Migration
      */
     public function down(): void
     {
+        Schema::table('admin_users', function (Blueprint $table) {
+            $table->dropColumn('phone_no');
+        });
+
         if ($this->userClassName === null) {
             throw new RuntimeException('Admin user model not defined');
         }
