@@ -17,6 +17,12 @@ class StoreAdminUser extends FormRequest
      */
     public function authorize()
     {
+        $data = $this->only(collect($this->rules())->keys()->all());
+
+        if (array_has($data, 'from_registration_page')) {
+            return true;
+        }
+
         return Gate::allows('admin.admin-user.create');
     }
 
@@ -34,10 +40,9 @@ class StoreAdminUser extends FormRequest
             'language' => ['required', 'string'],
             'last_name' => ['nullable', 'string'],
             'password' => ['required', 'confirmed', 'min:7', 'regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9]).*$/', 'string'],
-            'phone_no' => ['nullable', 'string'],
-
+            'phone_no' => ['nullable', 'string', 'starts_with:+63,09'],
             'roles' => ['required'],
-
+            'from_registration_page' => ['nullable', 'boolean'],
         ];
 
         if (Config::get('admin-auth.activation_enabled')) {
@@ -54,7 +59,9 @@ class StoreAdminUser extends FormRequest
      */
     public function getModifiedData(): array
     {
+
         $data = $this->only(collect($this->rules())->keys()->all());
+
         if (!Config::get('admin-auth.activation_enabled')) {
             $data['activated'] = true;
         }
@@ -63,6 +70,7 @@ class StoreAdminUser extends FormRequest
         }
 
         $data['roles'] = [$data['roles']];
+
         return $data;
     }
 }
